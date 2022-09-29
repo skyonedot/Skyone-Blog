@@ -1,6 +1,7 @@
 
 import Head from 'next/head'
 import Link from 'next/link'
+
 import Date from '../components/date'
 import utilStyles from '../styles/utils.module.css'
 import Layout, {siteTitle} from '../components/layout'
@@ -19,9 +20,13 @@ export async function getStaticProps(){
 export default function Home({allPostsData}) {
   // console.log("Allpostdata",allPostsData)
   return (
+    
     <Layout home>
+    {/* <Html> */}
+
       <Head>
         <title>{siteTitle}</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous"></link>
       </Head>
 
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`} >
@@ -50,6 +55,7 @@ export default function Home({allPostsData}) {
         </p>
        </section> */}
     </Layout>
+    // </Html>
   )
 }
 
