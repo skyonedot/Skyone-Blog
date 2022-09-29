@@ -2,12 +2,10 @@ import Date from '../../components/date'
 import Layout from '../../components/layout'
 import { getAllPostIds,getPostData } from '../../lib/posts'
 import Head from 'next/head'
-import {Html} from 'next/document'
 import utilStyles from '../../styles/utils.module.css'
 
 export async function getStaticPaths(){
     const paths = getAllPostIds()
-    console.log("Paths",paths)
     return {
         paths,
         fallback: false
@@ -32,7 +30,8 @@ export default function Post({postData}){
                 <title>{postData.title}</title> 
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous"></link>
                 {/* <link href="/theme/prism-lucario.css" rel="stylesheet"/> */}
-                <link href="/theme/prism-coldark-cold.css" rel="stylesheet"/>
+                {/* <link href="/theme/prism-coldark-cold.css" rel="stylesheet"/> */}
+                <link href="/prism.css" rel="stylesheet"/>
                 <script src='/prism.js'></script>
             </Head>
             <article>

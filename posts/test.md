@@ -32,6 +32,8 @@ $$
 L = \frac{1}{2} \rho v^2 S C_L
 $$
 
+> bushi
+
 ~one~ or ~~two~~ tildes.
 
 ## Table
@@ -52,7 +54,7 @@ function myFunction() {
 }
 ```
 
-```javascript
+```solidity
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8;
 
