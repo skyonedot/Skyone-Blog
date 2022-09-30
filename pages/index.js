@@ -25,8 +25,9 @@ export default function Home({allPostsData}) {
     <Layout home>
     {/* <Html> */}
     <div>
+      {/* {console.log('process.env.NEXT_PUBLIC_ANALYTICS_ID',process.env.NEXT_PUBLIC_ANALYTICS_ID)} */}
         <Script
-          src={"https://www.googletagmanager.com/gtag/js?id="+process.env.GoogleTrackingID}
+          src={`https://www.googletagmanager.com/gtag/js?id=G-8R6QKXZXYE`}
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -35,7 +36,7 @@ export default function Home({allPostsData}) {
             function gtag(){window.dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('config', '${process.env.GoogleTrackingID}');
+            gtag('config', 'G-8R6QKXZXYE');
           `}
         </Script>
     </div>
