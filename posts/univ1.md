@@ -1,5 +1,5 @@
 ---
-title: 'UIni'
+title: '详解Uni V2版本'
 date: '2020-02-01'
 ---
 
