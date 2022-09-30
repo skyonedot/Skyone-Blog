@@ -1,5 +1,5 @@
 ---
-title: 'AMA发展'
+title: 'AMM演变'
 date: '2022-06-01'
 ---
 

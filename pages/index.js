@@ -1,6 +1,7 @@
 
 import Head from 'next/head'
 import Link from 'next/link'
+import Script from 'next/script'
 
 import Date from '../components/date'
 import utilStyles from '../styles/utils.module.css'
@@ -23,9 +24,25 @@ export default function Home({allPostsData}) {
     
     <Layout home>
     {/* <Html> */}
+    <div>
+        <Script
+          src={"https://www.googletagmanager.com/gtag/js?id="+process.env.GoogleTrackingID}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '${process.env.GoogleTrackingID}');
+          `}
+        </Script>
+    </div>
 
       <Head>
         <title>{siteTitle}</title>
+
       </Head>
 
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`} >
