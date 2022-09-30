@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "pm2start": "pm2 start npm --name blog -- run start"
   },
   "dependencies": {
     "date-fns": "^2.29.3",
