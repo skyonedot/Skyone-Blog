@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3005",
     "pm2start": "pm2 start npm --name blog -- run start"
   },
   "dependencies": {
