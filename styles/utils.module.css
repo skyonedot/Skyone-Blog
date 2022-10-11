@@ -58,3 +58,16 @@
     font-size:12px;
     margin: 0 0;
   }
+
+  .article blockquote {
+      margin-left: 0;
+      background: #f9f9f9;
+      border-left: 2px solid rgb(107, 107, 107);
+      padding: 0 10px;
+      font-size: 14px;
+  }
+
+
+  .article blockquote p {
+      display: inline;
+}

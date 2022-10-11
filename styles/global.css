@@ -27,16 +27,3 @@ img {
   display: block;
   margin: 0 auto;
 }
-
-blockquote {
-  margin-left: 0;
-  background: #f9f9f9;
-  border-left: 2px solid rgb(107, 107, 107);
-  padding: 0 10px;
-  font-size: 16px;
-  quotes: "\201C""\201D""\2018""\2019";
-}
-
-blockquote p {
-  display: inline;
-}
