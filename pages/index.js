@@ -19,7 +19,6 @@ export async function getStaticProps() {
 export default function Home({ allPostsData }) {
   // console.log("Allpostdata",allPostsData)
   return (
-
     <Layout home>
       {/* <Html> */}
       <div>
@@ -41,7 +40,6 @@ export default function Home({ allPostsData }) {
 
       <Head>
         <title>{siteTitle}</title>
-
       </Head>
 
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
@@ -57,10 +55,8 @@ export default function Home({ allPostsData }) {
                 <Date dateString={date} />
               </p>
             </li>
-
           ))}
         </ul>
-
       </section>
 
       {/* <section className={utilStyles.headingMd}>

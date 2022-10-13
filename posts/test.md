@@ -3,8 +3,6 @@ title: '详解Uni V1版本'
 date: '2020-02-01'
 ---
 
-
-
 # GFM
 
 ## Autolink literals
@@ -13,16 +11,15 @@ www.example.com, https://example.com, and contact@example.com.
 
 ## Footnote
 
-
-
 A note[^1]
 
 [^1]: Big note.
 
 ## Strikethrough
+
 $x_i=3$
 
-:apple: 
+:apple:
 
 🍄
 
@@ -35,20 +32,18 @@ $$
 > - fadfa
 > - dafd
 
-
 ~one~ or ~~two~~ tildes.
 
 ## Table
 
-| a | b  |  c |  d  |
-| - | :- | -: | :-: |
-| a | b  |  c |  d  |
+| a   | b   |   c |  d  |
+| --- | :-- | --: | :-: |
+| a   | b   |   c |  d  |
 
 ## Tasklist
 
-* [ ] to do
-* [x] done
-
+- [ ] to do
+- [x] done
 
 ```javascript
 function myFunction() {

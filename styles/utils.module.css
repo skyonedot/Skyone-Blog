@@ -1,108 +1,105 @@
 .heading2Xl {
-    font-size: 1.5rem;
-    line-height: 1.2;
-    font-weight: 800;
-    letter-spacing: -0.05rem;
-    margin: 1rem 0;
-  }
-  
-  .headingXl {
-    font-size: 2rem;
-    line-height: 1.3;
-    font-weight: 800;
-    letter-spacing: -0.05rem;
-    margin: 1rem 0;
-  }
-  
-  .headingLg {
-    font-size: 1.5rem;
-    line-height: 1.4;
-    margin: 1rem 0;
-  }
-  
-  .headingMd {
-    font-size: 1.2rem;
-    line-height: 1.5;
-  }
-  
-  .borderCircle {
-    border-radius: 9999px;
-  }
-  
-  .colorInherit {
-    color: inherit;
-  }
-  
-  .padding1px {
-    padding-top: 1px;
-  }
-  
-  .list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+  font-size: 1.5rem;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.05rem;
+  margin: 1rem 0;
+}
 
-  
-  .listItem {
-    margin: 0 0 0.75rem;
-  }
+.headingXl {
+  font-size: 2rem;
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: -0.05rem;
+  margin: 1rem 0;
+}
 
-  .listItem a {
-    font-size: 22px;
-    color:rgb(70, 73, 72);
-  }
-  
-  .lightText {
-    color: #666;
-    font-size:12px;
-    margin: 0 0;
-  }
+.headingLg {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  margin: 1rem 0;
+}
 
-  .article {
-    font-size: 16px;
-  }
+.headingMd {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
 
-  .article h1 {
-    font-size: 24px;
-    margin: 0;
-  }
+.borderCircle {
+  border-radius: 9999px;
+}
 
-  .article h2 {
-    font-size: 23px;
-    margin: 0;
-  }
+.colorInherit {
+  color: inherit;
+}
 
-  .article h3 {
-    font-size: 22px;
-    margin: 0;
-  }
+.padding1px {
+  padding-top: 1px;
+}
 
-  .article h4 {
-    font-size: 21px;
-    margin: 0;
-  }
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-  .article h5 {
-    font-size: 20px;
-    margin: 0;
-  }
+.listItem {
+  margin: 0 0 0.75rem;
+}
 
-  .article h6 {
-    margin: 0;
-    font-size: 20px;
-  }
+.listItem a {
+  font-size: 22px;
+  color: rgb(70, 73, 72);
+}
 
-  .article blockquote {
-      margin-left: 0;
-      background: #f9f9f9;
-      border-left: 2px solid rgb(142, 140, 140);
-      padding: 0 10px;
-      font-size: 13px;
-  }
+.lightText {
+  color: #666;
+  font-size: 12px;
+  margin: 0 0;
+}
 
+.article {
+  font-size: 16px;
+}
 
-  .article blockquote p {
-      display: inline;
-  }
+.article h1 {
+  font-size: 24px;
+  margin: 0;
+}
 
+.article h2 {
+  font-size: 23px;
+  margin: 0;
+}
+
+.article h3 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.article h4 {
+  font-size: 21px;
+  margin: 0;
+}
+
+.article h5 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.article h6 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.article blockquote {
+  margin-left: 0;
+  background: #f9f9f9;
+  border-left: 2px solid rgb(142, 140, 140);
+  padding: 0 10px;
+  font-size: 13px;
+}
+
+.article blockquote p {
+  display: inline;
+}
