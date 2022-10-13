@@ -17,12 +17,9 @@ export async function getStaticProps() {
 }
 
 export default function Home({ allPostsData }) {
-  // console.log("Allpostdata",allPostsData)
   return (
     <Layout home>
-      {/* <Html> */}
       <div>
-        {/* {console.log('process.env.NEXT_PUBLIC_ANALYTICS_ID',process.env.NEXT_PUBLIC_ANALYTICS_ID)} */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-8R6QKXZXYE"
           strategy="afterInteractive"
@@ -43,7 +40,6 @@ export default function Home({ allPostsData }) {
       </Head>
 
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        {/* <h2 className={utilStyles.headingLg}>Blog</h2> */}
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
@@ -58,14 +54,6 @@ export default function Home({ allPostsData }) {
           ))}
         </ul>
       </section>
-
-      {/* <section className={utilStyles.headingMd}>
-        <p>[Your Self Introduction]</p>
-        <p>
-          Hello man
-        </p>
-       </section> */}
     </Layout>
-    // </Html>
   );
 }
