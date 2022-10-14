@@ -54,15 +54,12 @@ export default function Home({ allPostsData }) {
         </ul>
       </section>
 
-            
       <section>
         <Link href={`/line`}>
           <a>Forta Chart</a>
         </Link>
-        
-      </section>  
+      </section>
       {/* <Line /> */}
-
     </Layout>
   );
 }

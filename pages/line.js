@@ -6,12 +6,12 @@ import { getFortaScoreFromLocal } from '../lib/posts';
 
 export async function getServerSideProps() {
   // const data = await getFortaScore();
-  let data = await getFortaScoreFromLocal()
+  let data = await getFortaScoreFromLocal();
   console.log({
     props: {
-      data
-    }
-  })
+      data,
+    },
+  });
   return {
     props: {
       data,
@@ -19,17 +19,16 @@ export async function getServerSideProps() {
   };
 }
 
-
 export default function LineChart({ data }) {
   let label = data.fileContents.map((item, _) => {
-    return item.scanner
-  })
+    return item.scanner;
+  });
   let labels = data.fileContents.map((item, _) => {
-    return item.minute
-  })
+    return item.minute;
+  });
   let score = data.fileContents.map((item, _) => {
-    return item.score
-  })
+    return item.score;
+  });
   let testdata = {
     labels: labels,
     datasets: [
@@ -37,18 +36,14 @@ export default function LineChart({ data }) {
         label: label[0],
         fill: false,
         borderColor: 'rgba(75,192,192,1)',
-        data: score
+        data: score,
       },
-    ]
+    ],
   };
   return (
     <div className={chartStyles.chart}>
-      {
-        console.log("Labels", labels)
-      }
-      {
-        console.log("Score", score)
-      }
+      {console.log('Labels', labels)}
+      {console.log('Score', score)}
       {/* { getFortaScore() }  */}
       {/* {
         console.log("ItemList",itemList)
@@ -56,11 +51,7 @@ export default function LineChart({ data }) {
       } */}
       {/* { console.log("Data",data.fileContents) } */}
       <h2>Forta Score</h2>
-      <Line
-        data={testdata}
-        width={300}
-        height={300}
-      />
+      <Line data={testdata} width={300} height={300} />
     </div>
-  )
+  );
 }

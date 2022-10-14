@@ -3,8 +3,8 @@
  1883  npx eslint  ./pages
 
 
- npx prettier --write .
- npx prettier --check .
+npx prettier --write .
+npx prettier --check .
 
 
  depcheck .
