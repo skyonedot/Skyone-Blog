@@ -5,3 +5,6 @@
 
  npx prettier --write .
  npx prettier --check .
+
+
+ depcheck .

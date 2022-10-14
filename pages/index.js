@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Script from 'next/script';
-
 import Date from '../components/date';
 import utilStyles from '../styles/utils.module.css';
 import Layout, { siteTitle } from '../components/layout';
@@ -54,6 +53,16 @@ export default function Home({ allPostsData }) {
           ))}
         </ul>
       </section>
+
+            
+      <section>
+        <Link href={`/line`}>
+          <a>Forta Chart</a>
+        </Link>
+        
+      </section>  
+      {/* <Line /> */}
+
     </Layout>
   );
 }
