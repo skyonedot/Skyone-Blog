@@ -4,7 +4,7 @@ import chartStyles from '../styles/chart.module.css';
 // import { getFortaScore,getFortaScoreFromLocal } from '../lib/forta';
 import { getFortaScoreFromLocal } from '../lib/posts';
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   // const data = await getFortaScore();
   let data = await getFortaScoreFromLocal()
   console.log({
