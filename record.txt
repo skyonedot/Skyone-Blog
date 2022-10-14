@@ -1,6 +1,6 @@
- 1881  npx eslint ./pages
- 1882  npx eslint --fix ./pages
- 1883  npx eslint  ./pages
+npx eslint ./pages
+npx eslint --fix ./pages
+npx eslint  ./pages
 
 
 npx prettier --write .
