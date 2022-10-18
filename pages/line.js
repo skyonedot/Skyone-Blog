@@ -7,7 +7,7 @@ import { getFortaScoreFromLocally } from '../lib/forta';
 export async function getServerSideProps() {
   // let data = await getFortaScoreFromLocal();
   let { addressScore, timeStamp } = await getFortaScoreFromLocally();
-  console.log('addressScore', addressScore);
+  // console.log('addressScore', addressScore);
   return {
     props: {
       addressScore,
@@ -56,7 +56,7 @@ export default function LineChart({ addressScore, timeStamp }) {
       } */}
       {/* { console.log("Data",data.fileContents) } */}
       <h2>Forta Score</h2>
-      <Line data={testdata} width={300} height={300} />
+      <Line data={testdata}  />
     </div>
   );
 }
