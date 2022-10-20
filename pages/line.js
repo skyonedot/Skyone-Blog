@@ -5,9 +5,9 @@ import { getFortaScoreFromLocal } from '../lib/posts';
 import { getFortaScoreFromLocally } from '../lib/forta';
 
 export async function getServerSideProps() {
-  // let data = await getFortaScoreFromLocal();
   let { addressScore, timeStamp } = await getFortaScoreFromLocally();
-  // console.log('addressScore', addressScore);
+  // console.log('addressScore', addressScore, addressScore['0x1A9df072db4b9A21F889fFf0Dcb7dF122ffE5A1c'].length, addressScore['0xa67c8ddd816a13b9f4c1b7aa46769d7d5768e646'].length);
+  // console.log("TimeStamp",timeStamp, timeStamp.length);
   return {
     props: {
       addressScore,
@@ -17,17 +17,6 @@ export async function getServerSideProps() {
 }
 
 export default function LineChart({ addressScore, timeStamp }) {
-  // console.log( "AddressScoreKeys",addressScore.keys() )
-  // console.log( "TimeStampe",timeStamp )
-  // let label = data.fileContents.map((item, _) => {
-  //   return item.scanner;
-  // });
-  // let labels = data.fileContents.map((item, _) => {
-  //   return item.minute;
-  // });
-  // let score = data.fileContents.map((item, _) => {
-  //   return item.score;
-  // });
   let testdata = {
     labels: timeStamp,
     datasets: [
@@ -47,14 +36,6 @@ export default function LineChart({ addressScore, timeStamp }) {
   };
   return (
     <div className={chartStyles.chart}>
-      {/* {console.log('Labels', labels)}
-      {console.log('Score', score)} */}
-      {/* { getFortaScore() }  */}
-      {/* {
-        console.log("ItemList",itemList)
-        
-      } */}
-      {/* { console.log("Data",data.fileContents) } */}
       <h2>Forta Score</h2>
       <Line data={testdata}  />
     </div>
