@@ -70,27 +70,27 @@ export default function LineChart({ addressScore, timeStamp }) {
   // console.log(needScore)
   // let daily = {};
   // let weekly = {};
-
+  let gap = 3 * 24
   let testdata = {
-    labels: timeStamp.slice(Math.round(timeStamp.length - 24*7), timeStamp.length),
+    labels: timeStamp.slice(Math.round(timeStamp.length - gap), timeStamp.length),
     datasets: [
       {
         label: addr[0],
         fill: false,
         borderColor: 'rgba(75,192,192,1)',
-        data: addressScore[addr[0]].slice(Math.round(addressScore[addr[0]].length - 24*7), addressScore[addr[0]].length),
+        data: addressScore[addr[0]].slice(Math.round(addressScore[addr[0]].length - gap), addressScore[addr[0]].length),
       },
       {
         label: addr[1],
         fill: false,
         borderColor: 'rgba(0,0,0,1)',
-        data: addressScore[addr[1]].slice(Math.round(addressScore[addr[1]].length - 24*7), addressScore[addr[1]].length),
+        data: addressScore[addr[1]].slice(Math.round(addressScore[addr[1]].length - gap), addressScore[addr[1]].length),
       },
       {
         label: addr[2],
         fill: false,
         borderColor: 'red',
-        data: addressScore[addr[2]].slice(Math.round(addressScore[addr[2]].length - 24*7), addressScore[addr[2]].length),
+        data: addressScore[addr[2]].slice(Math.round(addressScore[addr[2]].length - gap), addressScore[addr[2]].length),
       },
     ],
   };
