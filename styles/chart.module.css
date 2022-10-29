@@ -2,6 +2,28 @@
   display: block;
   margin: 0 auto;
   width: 100%;
-
-
 }
+
+
+.content table {
+  font-family: sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.content td{
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+
+.content th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+
+.content tr:nth-child(even) {
+  background-color: #dddddd;
+}
+

@@ -3,7 +3,6 @@ import Head from 'next/head';
 import { Line } from 'react-chartjs-2';
 import chartStyles from '../styles/chart.module.css';
 import { getFortaScoreFromLocally } from '../lib/forta';
-import { add } from 'date-fns';
 
 export async function getServerSideProps() {
   let { addressScore, timeStamp } = await getFortaScoreFromLocally();
@@ -19,7 +18,7 @@ export async function getServerSideProps() {
 
 function calculate(timeStamp, addressScore) {
   //Compare Two date
-  let startDate = ((new Date() -  new Date("2022-10-24T04:00:00Z")) / (1000 * 60 * 60 * 24) ) > 7 ? new Date("2022-10-31T04:00:00Z") : new Date("2022-10-24T04:00:00Z") ;
+  let startDate = ((new Date() - new Date("2022-10-24T04:00:00Z")) / (1000 * 60 * 60 * 24)) > 7 ? new Date("2022-10-31T04:00:00Z") : new Date("2022-10-24T04:00:00Z");
   //find all the item bigger than startDate
   // timeStamp.filter((item,index) => {
   //   new Date(item) > startDate ? index 
@@ -28,7 +27,7 @@ function calculate(timeStamp, addressScore) {
   let indexArray = timeStamp.map((item, index) => {
     if (new Date(item) > startDate) {
       return index;
-    }else{
+    } else {
       return null;
     }
   });
@@ -57,12 +56,12 @@ export default function LineChart({ addressScore, timeStamp }) {
   let [needTime, needScore] = calculate(timeStamp, addressScore)
   let needinfo = {}
   Object.keys(needScore).forEach((item, _) => {
-    needinfo[item] =  {
-      average : needScore[item].reduce((a, b) => parseFloat(a) + parseFloat(b), 0) / needScore[item].length,
-      biggerNinty: needScore[item].filter(function(item){return parseFloat(item)>=0.9}).length,
-      biggerSeventy : needScore[item].filter(function(item){return parseFloat(item)>0.7 && parseFloat(item)<0.9}).length,
-      wrong : needScore[item].filter(function(item){return parseFloat(item)==0.7}).length,
-      all : needScore[item].length
+    needinfo[item] = {
+      average: needScore[item].reduce((a, b) => parseFloat(a) + parseFloat(b), 0) / needScore[item].length,
+      biggerNinty: needScore[item].filter(function (item) { return parseFloat(item) >= 0.9 }).length,
+      biggerSeventy: needScore[item].filter(function (item) { return parseFloat(item) > 0.7 && parseFloat(item) < 0.9 }).length,
+      wrong: needScore[item].filter(function (item) { return parseFloat(item) == 0.7 }).length,
+      all: needScore[item].length
     }
   })
   console.log(needinfo)
@@ -99,13 +98,32 @@ export default function LineChart({ addressScore, timeStamp }) {
       <Head>
         <link rel="icon" href="/images/favicon.png" />
       </Head>
-      <div>
+      <div className={`${chartStyles.content}`}>
         Score Distribution
-        <ul>
+        {/* <ul>
           {Object.keys(needinfo).map((item, _) => {
-            return <li key={_}>{item} : {needinfo[item].average.toFixed(3)} ✔️ {needinfo[item].biggerNinty} 🌺 {needinfo[item].biggerSeventy} 🍄 {needinfo[item].wrong} 🚨 {needinfo[item].all}</li>
+            return <li key={_}>{item} : average : {needinfo[item].average.toFixed(3)} ✔️ {needinfo[item].biggerNinty} 🌺 {needinfo[item].biggerSeventy} 🍄 {needinfo[item].wrong} 🚨 {needinfo[item].all}</li>
           })}
-        </ul>
+        </ul> */}
+        <table>
+          <tr>
+            <th>Addr</th>
+            <th>Average</th>
+            <th>Bigger Than 90</th>
+            <th>Bigger Than 70</th>
+            <th>Wrong</th>
+            <th>Count</th>
+          </tr>
+          {Object.keys(needinfo).map((item, _) => {
+            return <tr key={_}> <th> {item} </th> 
+                                <th> {needinfo[item].average.toFixed(3)} </th>  
+                                <th> {needinfo[item].biggerNinty} </th>
+                                <th> {needinfo[item].biggerSeventy} </th> 
+                                <th> {needinfo[item].wrong} </th>  
+                                <th> {needinfo[item].all} </th> 
+                    </tr>
+          })} 
+        </table>
       </div>
       <div className={chartStyles.chart}>
         <h2>Forta Score</h2>
