@@ -18,10 +18,13 @@ export async function getServerSideProps() {
 
 function calculate(timeStamp, addressScore) {
   //Compare Two date
-  let startDate = ((new Date() - new Date("2022-10-24T04:00:00Z")) / (1000 * 60 * 60 * 24)) > 7 ? new Date("2022-10-31T04:00:00Z") : new Date("2022-10-24T04:00:00Z");
+  let startDate =
+    (new Date() - new Date('2022-10-24T04:00:00Z')) / (1000 * 60 * 60 * 24) > 7
+      ? new Date('2022-10-31T04:00:00Z')
+      : new Date('2022-10-24T04:00:00Z');
   //find all the item bigger than startDate
   // timeStamp.filter((item,index) => {
-  //   new Date(item) > startDate ? index 
+  //   new Date(item) > startDate ? index
   // })
 
   let indexArray = timeStamp.map((item, index) => {
@@ -31,65 +34,82 @@ function calculate(timeStamp, addressScore) {
       return null;
     }
   });
-  indexArray = indexArray.filter(el => el);
+  indexArray = indexArray.filter((el) => el);
   // console.log("INDEX",indexArray)
 
-
-  let addr = Object.keys(addressScore)
-  let addrS = {}
+  let addr = Object.keys(addressScore);
+  let addrS = {};
   addr.forEach((item, _) => {
     addrS[item] = addressScore[item].filter((itemsmall, index) => {
       if (indexArray.includes(index)) {
         return itemsmall;
       }
-    })
-  })
+    });
+  });
   // console.log("Addr", addrS)
 
-
-  return [indexArray, addrS]
-
+  return [indexArray, addrS];
 }
 
 export default function LineChart({ addressScore, timeStamp }) {
-  let addr = Object.keys(addressScore)
-  let [needTime, needScore] = calculate(timeStamp, addressScore)
-  let needinfo = {}
+  let addr = Object.keys(addressScore);
+  let [needTime, needScore] = calculate(timeStamp, addressScore);
+  let needinfo = {};
   Object.keys(needScore).forEach((item, _) => {
     needinfo[item] = {
-      average: needScore[item].reduce((a, b) => parseFloat(a) + parseFloat(b), 0) / needScore[item].length,
-      biggerNinty: needScore[item].filter(function (item) { return parseFloat(item) >= 0.9 }).length,
-      biggerSeventy: needScore[item].filter(function (item) { return parseFloat(item) > 0.7 && parseFloat(item) < 0.9 }).length,
-      wrong: needScore[item].filter(function (item) { return parseFloat(item) == 0.7 }).length,
-      all: needScore[item].length
-    }
-  })
-  console.log(needinfo)
+      average:
+        needScore[item].reduce((a, b) => parseFloat(a) + parseFloat(b), 0) /
+        needScore[item].length,
+      biggerNinty: needScore[item].filter(function (item) {
+        return parseFloat(item) >= 0.9;
+      }).length,
+      biggerSeventy: needScore[item].filter(function (item) {
+        return parseFloat(item) > 0.7 && parseFloat(item) < 0.9;
+      }).length,
+      wrong: needScore[item].filter(function (item) {
+        return parseFloat(item) == 0.7;
+      }).length,
+      all: needScore[item].length,
+    };
+  });
+  console.log(needinfo);
   // console.log(needTime)
   // console.log(needScore)
   // let daily = {};
   // let weekly = {};
-  let gap = 3 * 24
+  let gap = 3 * 24;
   let testdata = {
-    labels: timeStamp.slice(Math.round(timeStamp.length - gap), timeStamp.length),
+    labels: timeStamp.slice(
+      Math.round(timeStamp.length - gap),
+      timeStamp.length
+    ),
     datasets: [
       {
         label: addr[0],
         fill: false,
         borderColor: 'rgba(75,192,192,1)',
-        data: addressScore[addr[0]].slice(Math.round(addressScore[addr[0]].length - gap), addressScore[addr[0]].length),
+        data: addressScore[addr[0]].slice(
+          Math.round(addressScore[addr[0]].length - gap),
+          addressScore[addr[0]].length
+        ),
       },
       {
         label: addr[1],
         fill: false,
         borderColor: 'rgba(0,0,0,1)',
-        data: addressScore[addr[1]].slice(Math.round(addressScore[addr[1]].length - gap), addressScore[addr[1]].length),
+        data: addressScore[addr[1]].slice(
+          Math.round(addressScore[addr[1]].length - gap),
+          addressScore[addr[1]].length
+        ),
       },
       {
         label: addr[2],
         fill: false,
         borderColor: 'red',
-        data: addressScore[addr[2]].slice(Math.round(addressScore[addr[2]].length - gap), addressScore[addr[2]].length),
+        data: addressScore[addr[2]].slice(
+          Math.round(addressScore[addr[2]].length - gap),
+          addressScore[addr[2]].length
+        ),
       },
     ],
   };
@@ -115,14 +135,18 @@ export default function LineChart({ addressScore, timeStamp }) {
             <th>Count</th>
           </tr>
           {Object.keys(needinfo).map((item, _) => {
-            return <tr key={_}> <th> {item} </th> 
-                                <th> {needinfo[item].average.toFixed(3)} </th>  
-                                <th> {needinfo[item].biggerNinty} </th>
-                                <th> {needinfo[item].biggerSeventy} </th> 
-                                <th> {needinfo[item].wrong} </th>  
-                                <th> {needinfo[item].all} </th> 
-                    </tr>
-          })} 
+            return (
+              <tr key={_}>
+                {' '}
+                <th> {item} </th>
+                <th> {needinfo[item].average.toFixed(3)} </th>
+                <th> {needinfo[item].biggerNinty} </th>
+                <th> {needinfo[item].biggerSeventy} </th>
+                <th> {needinfo[item].wrong} </th>
+                <th> {needinfo[item].all} </th>
+              </tr>
+            );
+          })}
         </table>
       </div>
       <div className={chartStyles.chart}>
