@@ -72,7 +72,7 @@ export default function LineChart({ addressScore, timeStamp }) {
       all: needScore[item].length,
     };
   });
-  console.log(needinfo);
+  // console.log(needinfo);
   // console.log(needTime)
   // console.log(needScore)
   // let daily = {};

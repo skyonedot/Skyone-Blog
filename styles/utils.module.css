@@ -59,6 +59,7 @@
 }
 
 .article {
+  /* grid-area: main; */
   font-size: 16px;
 }
 
@@ -110,4 +111,21 @@
   font-size: 85%;
   background-color: #ededed;
   margin: 0;
+}
+
+.articlepage {
+  /* display: grid;
+  grid-template-columns: auto auto; */
+}
+
+.toc {
+  position:fixed;
+  left:2rem;
+  text-align: center;
+}
+
+.toc p{
+  border-radius: 20rem;
+  background-color: antiquewhite;
+
 }

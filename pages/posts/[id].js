@@ -22,6 +22,15 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Post({ postData }) {
+  const regexp = RegExp('<h[0-9]>.*</h[0-9]>', 'g');
+  const str = postData.contentHtml;
+  const matches = str.matchAll(regexp);
+  let toc = [];
+  for (const match of matches) {
+    // console.log(match[0])
+    // toc.push(match[0].replace(regex,'').replace(RegExp('</h[0-9]>', 'i'),''))
+    toc.push(match[0])
+  }
   return (
     <Layout>
       <Head>
@@ -37,13 +46,26 @@ export default function Post({ postData }) {
         {/* <link href="/prism.css" rel="stylesheet" /> */}
         <script src="/prism.js" async />
       </Head>
-      <article className={utilStyles.article}>
-        <h1 className={utilStyles.headingX1}> {postData.title} </h1>
-        <div className={utilStyles.lightText}>
-          <Date dateString={postData.date} />
+      <div className={utilStyles.articlepage}>
+        <div className={utilStyles.toc}>
+          {toc.map((match) => {
+            return (
+              <p key={match.replace(RegExp('<h[0-9]>', 'i'),'').replace(RegExp('</h[0-9]>', 'i'),'')}>
+                {match.replace(RegExp('<h[0-9]>', 'i'),'').replace(RegExp('</h[0-9]>', 'i'),'')}
+              </p>
+            )
+          })}
         </div>
-        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
-      </article>
+
+        <article className={utilStyles.article}>
+          <h1 className={utilStyles.headingX1}> {postData.title} </h1>
+          <div className={utilStyles.lightText}>
+            <Date dateString={postData.date} />
+          </div>
+          <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        </article>
+      </div>
+
     </Layout>
   );
 }
