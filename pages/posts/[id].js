@@ -47,7 +47,7 @@ export default function Post({ postData }) {
         <script src="/prism.js" async />
       </Head>
       <div className={utilStyles.articlepage}>
-        <div className={utilStyles.toc}>
+        {/* <div className={utilStyles.toc}>
           {toc.map((match) => {
             return (
               <p key={match.replace(RegExp('<h[0-9]>', 'i'),'').replace(RegExp('</h[0-9]>', 'i'),'')}>
@@ -55,7 +55,7 @@ export default function Post({ postData }) {
               </p>
             )
           })}
-        </div>
+        </div> */}
 
         <article className={utilStyles.article}>
           <h1 className={utilStyles.headingX1}> {postData.title} </h1>
