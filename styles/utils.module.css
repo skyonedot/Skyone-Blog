@@ -119,13 +119,12 @@
 }
 
 .toc {
-  position:fixed;
-  left:2rem;
+  position: fixed;
+  left: 2rem;
   text-align: center;
 }
 
-.toc p{
+.toc p {
   border-radius: 20rem;
   background-color: antiquewhite;
-
 }

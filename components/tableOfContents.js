@@ -1,9 +1,5 @@
 const TableOfContents = () => {
-    return (
-        <nav aria-label="Table of contents">
-            Hello
-        </nav>
-    )
-}
+  return <nav aria-label="Table of contents">Hello</nav>;
+};
 
-export default TableOfContents
+export default TableOfContents;

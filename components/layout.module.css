@@ -10,3 +10,16 @@
   flex-direction: column;
   align-items: center;
 }
+
+.icon {
+  display: flex;
+  margin: 10px 0;
+}
+
+.icon a {
+  margin: 0 50px;
+}
+
+.icon a:hover {
+  transform: scale(1.2);
+}

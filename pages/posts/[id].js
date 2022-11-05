@@ -29,7 +29,7 @@ export default function Post({ postData }) {
   for (const match of matches) {
     // console.log(match[0])
     // toc.push(match[0].replace(regex,'').replace(RegExp('</h[0-9]>', 'i'),''))
-    toc.push(match[0])
+    toc.push(match[0]);
   }
   return (
     <Layout>
@@ -65,7 +65,6 @@ export default function Post({ postData }) {
           <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
         </article>
       </div>
-
     </Layout>
   );
 }
