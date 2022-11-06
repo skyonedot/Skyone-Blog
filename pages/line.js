@@ -4,10 +4,21 @@ import { Line } from 'react-chartjs-2';
 import chartStyles from '../styles/chart.module.css';
 import { getFortaScoreFromLocally } from '../lib/forta';
 
+function addSeconds(date, seconds) {
+  var result = new Date(date);
+  result.setSeconds(result.getSeconds() + seconds);
+  return result;
+}
+
+function getDate(){
+  let startDate = '2022-10-24T04:00:00Z'
+  let time_gap = (new Date() - new Date(startDate)) / (1000 * 60 * 60 * 24) / 7
+  let nowDate = addSeconds(new Date(startDate), parseInt(time_gap) * 7 * 24 * 60 * 60)
+  return nowDate
+}
+
 export async function getServerSideProps() {
   let { addressScore, timeStamp } = await getFortaScoreFromLocally();
-  // console.log('addressScore', addressScore, addressScore['0x1A9df072db4b9A21F889fFf0Dcb7dF122ffE5A1c'].length, addressScore['0xa67c8ddd816a13b9f4c1b7aa46769d7d5768e646'].length);
-  // console.log("TimeStamp", timeStamp, timeStamp.length);
   return {
     props: {
       addressScore,
@@ -18,15 +29,7 @@ export async function getServerSideProps() {
 
 function calculate(timeStamp, addressScore) {
   //Compare Two date
-  let startDate =
-    (new Date() - new Date('2022-10-24T04:00:00Z')) / (1000 * 60 * 60 * 24) > 7
-      ? new Date('2022-10-31T04:00:00Z')
-      : new Date('2022-10-24T04:00:00Z');
-  //find all the item bigger than startDate
-  // timeStamp.filter((item,index) => {
-  //   new Date(item) > startDate ? index
-  // })
-
+  let startDate = getDate();
   let indexArray = timeStamp.map((item, index) => {
     if (new Date(item) > startDate) {
       return index;
@@ -35,7 +38,6 @@ function calculate(timeStamp, addressScore) {
     }
   });
   indexArray = indexArray.filter((el) => el);
-  // console.log("INDEX",indexArray)
 
   let addr = Object.keys(addressScore);
   let addrS = {};
@@ -46,14 +48,13 @@ function calculate(timeStamp, addressScore) {
       }
     });
   });
-  // console.log("Addr", addrS)
 
   return [indexArray, addrS];
 }
 
 export default function LineChart({ addressScore, timeStamp }) {
   let addr = Object.keys(addressScore);
-  let [needTime, needScore] = calculate(timeStamp, addressScore);
+  let [_, needScore] = calculate(timeStamp, addressScore);
   let needinfo = {};
   Object.keys(needScore).forEach((item, _) => {
     needinfo[item] = {
@@ -72,11 +73,7 @@ export default function LineChart({ addressScore, timeStamp }) {
       all: needScore[item].length,
     };
   });
-  // console.log(needinfo);
-  // console.log(needTime)
-  // console.log(needScore)
-  // let daily = {};
-  // let weekly = {};
+  // console.log("NEEDScore",needScore)
   let gap = 3 * 24;
   let testdata = {
     labels: timeStamp.slice(
@@ -120,17 +117,12 @@ export default function LineChart({ addressScore, timeStamp }) {
       </Head>
       <div className={`${chartStyles.content}`}>
         Score Distribution
-        {/* <ul>
-          {Object.keys(needinfo).map((item, _) => {
-            return <li key={_}>{item} : average : {needinfo[item].average.toFixed(3)} ✔️ {needinfo[item].biggerNinty} 🌺 {needinfo[item].biggerSeventy} 🍄 {needinfo[item].wrong} 🚨 {needinfo[item].all}</li>
-          })}
-        </ul> */}
         <table>
           <tr>
             <th>Addr</th>
             <th>Average</th>
             <th>Bigger Than 90</th>
-            <th>Bigger Than 70</th>
+            <th>Bigger Than 75</th>
             <th>Wrong</th>
             <th>Count</th>
           </tr>
