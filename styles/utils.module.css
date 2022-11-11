@@ -44,6 +44,7 @@
 }
 
 .listItem {
+  text-align: center;
   margin: 0 0 0.75rem;
 }
 
@@ -116,6 +117,10 @@
 .articlepage {
   /* display: grid;
   grid-template-columns: auto auto; */
+}
+
+.articlepage h1 {
+  text-align: center;
 }
 
 .toc {

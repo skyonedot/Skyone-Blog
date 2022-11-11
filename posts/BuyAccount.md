@@ -9,13 +9,15 @@ date: '2022-11-07'
 
 买号是买一些社交账号, 比如twitter, gmail, 等等
 
-SMS服务是 帮忙代收短信的服务,
+SMS服务是 帮忙代收短信的服务, 下面说的
+
+> https://www.w3h5.com/post/619.html
 
 ---
 
 ## 买号
 
-买号网址[社交账号]: https://accsmarket.com/ , 我买的是里面的gmail, twitter, discord, 这个里面价格很便宜. 种类也多.
+买号网址[社交账号]: https://accsmarket.com/ , 我买的是里面的gmail, twitter, discord, 这个里面价格很便宜. 种类也多. 这个网站有TG群， 里面会发布一些优惠码，九五折左右吧， 链接： https://t.me/accsmarket
 
 可以crypto支付, 支持货币如下所示, 我用的是BSC的BUSD,  转帐完之后, 大概等了10min就到账了, 如果出了问题可以及时在联系他们人工, 回复消息很快.
 

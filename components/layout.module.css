@@ -1,5 +1,5 @@
 .container {
-  max-width: 55%;
+  max-width: 75%;
   padding: 0 2rem;
   margin: 0 auto;
   background-color: rgb(255, 255, 255);
@@ -22,4 +22,22 @@
 
 .icon a:hover {
   transform: scale(1.2);
+}
+
+@media screen and (max-width: 768px) {
+  .container {  
+    max-width: 95%;
+    padding: 0 2rem;
+    margin: 0 auto;
+    background-color: rgb(255, 255, 255);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .container {  
+    max-width: 85%;
+    padding: 0 2rem;
+    margin: 0 auto;
+    background-color: rgb(255, 255, 255);
+  }
 }
