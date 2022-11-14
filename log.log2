@@ -1,0 +1,123 @@
+
+> build
+> next build
+
+info  - Linting and checking validity of types...
+info  - Creating an optimized production build...
+info  - Compiled successfully
+info  - Collecting page data...
+info  - Generating static pages (0/7)
+info  - Generating static pages (1/7)
+info  - Generating static pages (3/7)
+info  - Generating static pages (5/7)
+info  - Generating static pages (7/7)
+info  - Finalizing page optimization...
+
+Route (pages)                              Size     First Load JS
+┌ ● /                                      2.93 kB          89 kB
+├   /_app                                  0 B            74.4 kB
+├ ○ /404                                   290 B          74.7 kB
+├ λ /line                                  83.6 kB         158 kB
+├   └ css/46c82fdd39adf125.css             282 B
+└ ● /posts/[id] (2069 ms)                  1.52 kB        87.6 kB
+    ├ /posts/BuyAccount (823 ms)
+    ├ /posts/AMM演变 (604 ms)
+    ├ /posts/CaptureTheEther讲解 (513 ms)
+    └ /posts/DevDao
++ First Load JS shared by all              80.1 kB
+  ├ chunks/framework-5f4595e5518b5600.js   42 kB
+  ├ chunks/main-d719a31ca00eb19c.js        31 kB
+  ├ chunks/pages/_app-979cf171145d7c08.js  518 B
+  ├ chunks/webpack-cb7634a8b6194820.js     884 B
+  └ css/67e520b99a11eee8.css               5.73 kB
+
+λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
+
+
+> pm2start
+> pm2 start npm --name blog -- run start
+
+
+> build
+> next build
+
+info  - Linting and checking validity of types...
+info  - Creating an optimized production build...
+info  - Compiled successfully
+info  - Collecting page data...
+info  - Generating static pages (0/7)
+info  - Generating static pages (1/7)
+info  - Generating static pages (3/7)
+info  - Generating static pages (5/7)
+info  - Generating static pages (7/7)
+info  - Finalizing page optimization...
+
+Route (pages)                              Size     First Load JS
+┌ ● /                                      2.93 kB          89 kB
+├   /_app                                  0 B            74.4 kB
+├ ○ /404                                   290 B          74.7 kB
+├ λ /line                                  83.6 kB         158 kB
+├   └ css/46c82fdd39adf125.css             282 B
+└ ● /posts/[id] (1787 ms)                  1.52 kB        87.6 kB
+    ├ /posts/AMM演变 (978 ms)
+    ├ /posts/CaptureTheEther讲解 (481 ms)
+    ├ /posts/BuyAccount
+    └ /posts/DevDao
++ First Load JS shared by all              80.1 kB
+  ├ chunks/framework-5f4595e5518b5600.js   42 kB
+  ├ chunks/main-d719a31ca00eb19c.js        31 kB
+  ├ chunks/pages/_app-979cf171145d7c08.js  518 B
+  ├ chunks/webpack-cb7634a8b6194820.js     884 B
+  └ css/67e520b99a11eee8.css               5.73 kB
+
+λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
+
+
+> pm2start
+> pm2 start npm --name blog -- run start
+
+
+> build
+> next build
+
+info  - Linting and checking validity of types...
+info  - Creating an optimized production build...
+info  - Compiled successfully
+info  - Collecting page data...
+info  - Generating static pages (0/7)
+info  - Generating static pages (1/7)
+info  - Generating static pages (3/7)
+info  - Generating static pages (5/7)
+info  - Generating static pages (7/7)
+info  - Finalizing page optimization...
+
+Route (pages)                              Size     First Load JS
+┌ ● / (1200 ms)                            2.93 kB          89 kB
+├   /_app                                  0 B            74.4 kB
+├ ○ /404                                   290 B          74.7 kB
+├ λ /line                                  83.6 kB         158 kB
+├   └ css/46c82fdd39adf125.css             282 B
+└ ● /posts/[id] (2093 ms)                  1.52 kB        87.6 kB
+    ├ /posts/AMM演变 (1036 ms)
+    ├ /posts/CaptureTheEther讲解 (685 ms)
+    ├ /posts/BuyAccount
+    └ /posts/DevDao
++ First Load JS shared by all              80.1 kB
+  ├ chunks/framework-5f4595e5518b5600.js   42 kB
+  ├ chunks/main-d719a31ca00eb19c.js        31 kB
+  ├ chunks/pages/_app-979cf171145d7c08.js  518 B
+  ├ chunks/webpack-cb7634a8b6194820.js     884 B
+  └ css/67e520b99a11eee8.css               5.73 kB
+
+λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
+
+
+> pm2start
+> pm2 start npm --name blog -- run start
+

@@ -31,7 +31,7 @@ function calculate(timeStamp, addressScore) {
   //Compare Two date
   let startDate = getDate();
   let indexArray = timeStamp.map((item, index) => {
-    if (new Date(item) > startDate) {
+    if (new Date(item) >= startDate) {
       return index;
     } else {
       return null;

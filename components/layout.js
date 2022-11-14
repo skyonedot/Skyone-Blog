@@ -13,6 +13,12 @@ export default function Layout({ children, home }) {
     <div className={styles.container}>
       <Head>
         <link rel="icon" href="/images/favicon.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@skyonedot" />
+        <meta name="twitter:title" content="SECRET HOME" />
+        <meta name="twitter:description" content="WELCOME TO THE 7DAYNFT SECRET HOME" />
+        <meta name="twitter:image" content="https://raw.githubusercontent.com/skyonedot/picture-host/68494123e403ec54f099e488ad862298b4c6acb9/2100A2229945AE8B33CD53EDB72BD825.png"/>
+        {/* <meta name="twitter:image" content="https://imgur.com/WO45OBk"/> */}
       </Head>
       <header className={styles.header}>
         {home ? (

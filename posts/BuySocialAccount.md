@@ -9,7 +9,7 @@ date: '2022-11-07'
 
 买号是买一些社交账号, 比如twitter, gmail, 等等
 
-SMS服务是 帮忙代收短信的服务, 下面说的
+SMS服务是 帮忙代收短信的服务, 下面说的很详细 罗列了一些付费的，也提供了一些免费的服务。
 
 > https://www.w3h5.com/post/619.html
 
@@ -49,7 +49,7 @@ SMS服务是 帮忙代收短信的服务, 下面说的
 
 - Discord 我买的是0.37U一个 
 
-  - discord 的账号手机号都是验证了的, 而且登陆的时候也不需要SMS, 流程和上面一样
+  - discord的登陆的时候也不需要SMS, 流程和上面一样， 如果要验证手机号的话， 可以买个SMS试试，看下面两个服务的介绍
 
     ![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20221107171703.png)
 
@@ -58,16 +58,17 @@ SMS服务是 帮忙代收短信的服务, 下面说的
 ## SMS
 
 SMS网址 我个人手头的有两个
+> 验证的时候有可能收不到短信 或者 电话号码已经被使用， 取消订单换个号或者换个地区重新弄即可。不扣费
 
 1. https://sms-activation-service.com/
 
    - 这个支持crypto, 可以用很多种货币, 种类 如下所示, 
    - 我个人用的是BSC上的BUSD [ 检测到账要慢一些, 可能转过去之后等了有30分钟吧] 
-   - 我只是充值了 还没试过他的服务
+   - 短信没过来的话，是不扣费的
 
    ![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20221107165626.png)
 
-   - 验证gmail的话 0.22U一个 也还行 不贵![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20221107172215.png)
+   - 验证gmail的话 也还行 不贵![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20221107172215.png)
 
 2. https://sms-activate.org/en/getNumber
 
@@ -77,7 +78,6 @@ SMS网址 我个人手头的有两个
 
    - 这个如果没收到短信的话是不扣费的, 如果收到了才会扣费
 
-   - 我验证gmail的时候, 失败了几次, 即google不认同电话号码, 无法发送短信, 多试几次就好 
 
      ![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20221107172302.png)
 
