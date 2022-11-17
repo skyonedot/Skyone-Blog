@@ -52,8 +52,24 @@ function calculate(timeStamp, addressScore) {
   return [indexArray, addrS];
 }
 
+// fill the last one by the first length
+function fillGap(addressScore){
+  let addr = Object.keys(addressScore);
+  let tem = []
+  for(let i=0;i<addressScore[addr[0]].length - addressScore[addr[addr.length-1]].length;i++){
+    tem.push("0.7")
+  }
+  addressScore[addr[addr.length-1]] = tem.concat(addressScore[addr[addr.length-1]])
+
+  return addressScore
+}
+
 export default function LineChart({ addressScore, timeStamp }) {
   let addr = Object.keys(addressScore);
+
+  // 
+  addressScore = fillGap(addressScore)
+
   let [_, needScore] = calculate(timeStamp, addressScore);
   let needinfo = {};
   Object.keys(needScore).forEach((item, _) => {
@@ -73,7 +89,6 @@ export default function LineChart({ addressScore, timeStamp }) {
       all: needScore[item].length,
     };
   });
-  // console.log("NEEDScore",needScore)
   let gap = 3 * 24;
   let testdata = {
     labels: timeStamp.slice(
@@ -108,6 +123,15 @@ export default function LineChart({ addressScore, timeStamp }) {
           addressScore[addr[2]].length
         ),
       },
+      {
+        label: addr[3],
+        fill: false,
+        borderColor: 'green',
+        data: addressScore[addr[3]].slice(
+          Math.round(addressScore[addr[3]].length - gap),
+          addressScore[addr[3]].length
+        ),
+      }
     ],
   };
   return (
@@ -141,6 +165,7 @@ export default function LineChart({ addressScore, timeStamp }) {
           })}
         </table>
       </div>
+
       <div className={chartStyles.chart}>
         <h2>Forta Score</h2>
         <Line data={testdata} />
