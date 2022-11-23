@@ -10,7 +10,7 @@ function addSeconds(date, seconds) {
   return result;
 }
 
-function getDate(){
+function getDate() {
   let startDate = '2022-10-24T04:00:00Z'
   let time_gap = (new Date() - new Date(startDate)) / (1000 * 60 * 60 * 24) / 7
   let nowDate = addSeconds(new Date(startDate), parseInt(time_gap) * 7 * 24 * 60 * 60)
@@ -53,15 +53,27 @@ function calculate(timeStamp, addressScore) {
 }
 
 // fill the last one by the first length
-function fillGap(addressScore){
+function fillGap(addressScore) {
   let addr = Object.keys(addressScore);
   let tem = []
-  for(let i=0;i<addressScore[addr[0]].length - addressScore[addr[addr.length-1]].length;i++){
+  for (let i = 0; i < addressScore[addr[0]].length - addressScore[addr[addr.length - 1]].length; i++) {
     tem.push("0.7")
   }
-  addressScore[addr[addr.length-1]] = tem.concat(addressScore[addr[addr.length-1]])
+  addressScore[addr[addr.length - 1]] = tem.concat(addressScore[addr[addr.length - 1]])
 
   return addressScore
+}
+
+function calAverage(array, door){
+  let sum = 0
+  let count = 0
+  for (let i = 0; i < array.length; i++){
+    if(parseFloat(array[i]) >= door){
+      sum += parseFloat(array[i])
+      count += 1
+    }
+  }
+  return sum / count
 }
 
 export default function LineChart({ addressScore, timeStamp }) {
@@ -74,12 +86,10 @@ export default function LineChart({ addressScore, timeStamp }) {
   let needinfo = {};
   Object.keys(needScore).forEach((item, _) => {
     needinfo[item] = {
-      average:
-        needScore[item].reduce((a, b) => parseFloat(a) + parseFloat(b), 0) /
-        needScore[item].length,
+      average: calAverage(needScore[item], 0.75),
       biggerNinty: needScore[item].filter(function (item) {
-        return parseFloat(item) >= 0.9;
-      }).length,
+          return parseFloat(item) >= 0.9;
+        }).length,
       biggerSeventy: needScore[item].filter(function (item) {
         return parseFloat(item) > 0.7 && parseFloat(item) < 0.9;
       }).length,

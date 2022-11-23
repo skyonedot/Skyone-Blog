@@ -72,6 +72,8 @@ async function main(){
 
 由于named account 可以交易, 所以可以注册一批 有潜力的account, 教程如下[假设现在都是从0开始 没有接触过near的account]: 
 
+> 滑倒最后 有一批可用的4d named account
+
 1. 去 near [创建钱包的网址][https://wallet.near.org/create] 选第一个, 助记词的方式![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20221117114822.png)
 
 2. 生成一套助记词  
