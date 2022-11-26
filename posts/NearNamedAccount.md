@@ -3,7 +3,7 @@ title: 'Near Named Account'
 date: '2022-11-17'
 ---
 
-![Image](https://images.pexels.com/photos/12906178/pexels-photo-12906178.jpeg)
+![Image](https://images.pexels.com/photos/12906178/pexels-photo-12906178.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)
 
 ---
 
