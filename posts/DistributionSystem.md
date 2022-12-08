@@ -11,7 +11,7 @@ date: '2022-11-26'
 
 >  为什么要分布式? 因为数据不能存在于单个节点上, 否则容易出现单点故障
 >
-> 为什么要一致性? 因为多个节点需要保证具有相同的数据
+>  为什么要一致性? 因为多个节点需要保证具有相同的数据
 
 分布式指的是部署在不同的网络计算机上, 彼此仅通过消息传递进行通讯
 
@@ -149,7 +149,103 @@ date: '2022-11-26'
    1. 区块链考虑的是BFT, 不超过1/3
    2. 分布式数据库考虑的是CFT, 不超过1/2
 
+---
 
+PBFT的三分之一
+
+这里讲一下为什么PBFT的作恶节点数量不能超过1/3
+
+预先知识
+
+1. 每一个节点只能同时参加一轮投票, 即未出结果时, 该节点是lock的状态
+2. 作恶节点的数量为f
+
+作恶节点数量为f, 那么 善良节点最起码要为f+1, 还要给故障节点预留f的名额
+
+> 故障节点的预留名额是f, 即故障的节点不能超过作恶节点数量, 因为超过之后, 无法达到2/3的投票, 即无法达成共识, 
+>
+> 之所以说预留是因为, 它在每轮的故障节点可以小于等于f, 
+>
+> - 如果小于f, 那么其余的则是诚实的节点, f+1 + N, 这样更好. 
+> - 如果等于f, 那么在这轮投票中, 收集到了2f+1, 其中f+1是诚实, 那么结果也是好的
+
+**那我们再说双花这个问题, 即在某个投票进行中, 会不会有一个同高度的 投票产生 **
+
+> Tendermint
+
+首先说, 不会, 因为在这一轮中投票的节点是锁死的状态, 无法为进行其他投票. 
+
+当validator commit了区块B, 那么就有大于2/3的节点在R轮投了precommit, 这表明至少有
+
+这里, 我还是没太懂 https://zhuanlan.zhihu.com/p/87370262
+
+---
+
+### PBFT
+
+拜占庭容错算法(Byzantine Fault Tolerant)面向拜占庭问题的容错算法，解决的是在网络通信可靠，但节点可能故障和作恶情况下如何达成共识 
+
+最早的讨论出现于1982年的 The Byzantine Generals Problem, 知道1999年PBFT的提出, 计算复杂度大大降低
+
+BFT算法恶意节点都不可以超过三分之一
+
+PBFT解决的什么? 
+
+- 解决1982年提出的BFP, 原始的通讯效率过慢
+- 解决的通讯效率和异步环境的问题
+- client发送给primary, 三阶段共识, client回收
+- view-change过程
+
+---
+
+### TenderMint
+
+**共识层和应用层分开**. 分为两部分
+
+> 共识层, 应用层, 网络层,. Tendermint是把应用拿出来
+>
+> Data available, consensus, (settlement, exeuction), Celistia是吧DA拿出来
+
+1. Tendermint Core 负责共识 账本
+2. Application BlockChain Interface, ABCI, 负责应用层建设. 支持任何语言的交易处理实现
+
+先说TenderMintCore, **属于PBFT的变种, 但是引入了锁定机制**
+
+整个系统中的节点分为两类
+
+- Validator 负责Propose, Vote等
+- Non Validator 同步状态 传递消息
+
+节点与节点之间是Gossip协议 相互同步信息或共识状态, 节点不一定是两两相连
+
+共识过程是若干个Round 加上Commit, NewHeight, 如下图所示
+
+Round里面会包括
+
+- Propose
+- Prevote
+- Precommit
+
+如果一轮中有元素没有满足, 这会开始新一期Round
+
+![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20221128225125.png)
+
+
+
+#### TenderMint和PBFT
+
+- 相同点
+  - 同属BFT体系.
+  - 抗1/3拜占庭节点攻击.
+  - 三阶段提交, 第一阶段广播交易(区块), 后两阶段广播签名(确认).
+    - Tendermint 的propose->pre-vote->pre-commit
+    - PBFT的 pre-prepare, prepare, commit
+  - 两者都需要达到法定人数才能提交块.
+- 不同点
+  - 节点概念不同, PBFT是节点数量,  Tendermint这是节点权益
+  - PBFT需要预设固定的Validator, 而Tendermint是变动的 2/3认证的
+  - 关于超过1/3节点是拜占庭节点的情况下
+  - PBFT的View-Change机制
 
 
 
@@ -161,4 +257,10 @@ date: '2022-11-26'
 
 [分布式一致性算法，你确定不了解一下](https://juejin.cn/post/6854573216174702605)
 
-[区块链是分布式数据库吗（解析区块链和分布式数据库的区别](https://www.yuanyuzhouneican.com/article-176750.html)
+[区块链是分布式数据库吗(解析区块链和分布式数据库的区别)](https://www.yuanyuzhouneican.com/article-176750.html)
+
+[Tendermint共识协议详解](https://juejin.cn/post/6844903973086822408)
+
+[深度解析Tendermint, 快速融入Cosmos生态](https://zhuanlan.zhihu.com/p/38252058)
+
+[Tendermint BFT协议](https://zhuanlan.zhihu.com/p/111770050)
