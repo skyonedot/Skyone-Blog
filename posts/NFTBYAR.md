@@ -4,15 +4,13 @@ date: '2022-12-08'
 ---
 
 ![](https://images.pexels.com/photos/45204/alm-friuli-snow-snowfall-45204.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)
-
-
-# AR自成NFT
+> Photo by Alexander Elliott 
 
 放弃IPFS, 拥抱AR :white_flower: 
 
 教程主要是过一遍如何放弃IPFS, 用AR来做NFT
 
-最后的结果展示: [戳我]()
+最后的结果展示: [戳我](https://testnets.opensea.io/collection/sevendaynft)
 
 ---
 
@@ -30,9 +28,9 @@ date: '2022-12-08'
 
    ![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20221208200133.png)
 
-提供一个用户名和密码 注册一下 就可以.
+    提供一个用户名和密码 注册一下 就可以.
 
-![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20221208200246.png)
+    ![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20221208200246.png)
 
 ---
 
@@ -98,6 +96,7 @@ date: '2022-12-08'
    - 这里说一下费用, 每笔tx有两个字段和费用有关, 比如这笔[tx](https://viewblock.io/arweave/tx/P107fyT2M4mqu_WpDMINP2QWW9SjW_UxrhkL54gM7nA) :point_left:
 
      - Fee: 我们为这个文件存储所花的费用, 也就是存储文件的大头 :face_with_head_bandage: , 上面那笔tx 是对应655kb的png, Fee是 0.000109AR
+        > 单从Fee的角度来说, 总体要比Pinata便宜, 当然Infura的价格会好一些, 但是Infura访问太慢
      - Value: 这个字段类似于在eth上面的value字段, 不过gas也会在这里面
 
 2. 以目录形式上传json文件
@@ -137,9 +136,11 @@ date: '2022-12-08'
 
        - 上传完之后 返回下图
 
-         ![image-20221208205214752](/Users/skyone/Library/Application Support/typora-user-images/image-20221208205214752.png)
+         ![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20221208212115.png)
+        
+       - 这个url再加上后缀, 比如 https://arweave.net/ruwoIvbk7oLa87xKUTd-_DY4MGJ6UR8iWEE3egRkfOI/arupload/1.json 就可以访问了
 
-3. 基本上到这里就结束了, 在etherscan上面设置一下tokenURI即可, 格式: ar//《hash》 比如根据上面这个复杂的红框里的值, 则是设成: ar://ruwoIvbk7oLa87xKUTd-_DY4MGJ6UR8iWEE3egRkfOI
+3. 基本上到这里就结束了, 在etherscan上面设置一下tokenURI即可, 格式: ar//《Path》 比如根据上面这个复杂的红框里的值, 则是设成: ar://ruwoIvbk7oLa87xKUTd-_DY4MGJ6UR8iWEE3egRkfOI/arupload/
 
 ---
 

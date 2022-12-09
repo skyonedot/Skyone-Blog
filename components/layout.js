@@ -18,7 +18,7 @@ export default function Layout({ children, home }) {
         <meta name="twitter:title" content="SECRET HOME" />
         <meta name="twitter:description" content="WELCOME TO THE 7DAYNFT SECRET HOME" />
         <meta name="twitter:image" content="https://raw.githubusercontent.com/skyonedot/picture-host/68494123e403ec54f099e488ad862298b4c6acb9/2100A2229945AE8B33CD53EDB72BD825.png"/>
-        {/* <meta name="twitter:image" content="https://imgur.com/WO45OBk"/> */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"></meta>
       </Head>
       <header className={styles.header}>
         {home ? (
