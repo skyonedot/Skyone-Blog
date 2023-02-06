@@ -1404,3 +1404,129 @@ Route (pages)                              Size     First Load JS
 > pm2start
 > pm2 start npm --name blog -- run start
 
+
+> build
+> next build
+
+info  - Linting and checking validity of types...
+info  - Creating an optimized production build...
+info  - Compiled successfully
+info  - Collecting page data...
+info  - Generating static pages (0/10)
+info  - Generating static pages (2/10)
+info  - Generating static pages (4/10)
+info  - Generating static pages (7/10)
+info  - Generating static pages (10/10)
+info  - Finalizing page optimization...
+
+Route (pages)                              Size     First Load JS
+┌ ● / (783 ms)                             3.18 kB        89.2 kB
+├   /_app                                  0 B            74.4 kB
+├ ○ /404                                   290 B          74.7 kB
+├ λ /line                                  83.7 kB         158 kB
+├   └ css/46c82fdd39adf125.css             282 B
+└ ● /posts/[id] (4129 ms)                  1.76 kB        87.8 kB
+    ├ /posts/AMM演变 (982 ms)
+    ├ /posts/DevDao (838 ms)
+    ├ /posts/BuySocialAccount (808 ms)
+    ├ /posts/NearNamedAccount (703 ms)
+    ├ /posts/CaptureTheEther讲解 (482 ms)
+    ├ /posts/DistributionSystem
+    └ /posts/NFTBYAR
++ First Load JS shared by all              80.1 kB
+  ├ chunks/framework-5f4595e5518b5600.js   42 kB
+  ├ chunks/main-d719a31ca00eb19c.js        31 kB
+  ├ chunks/pages/_app-979cf171145d7c08.js  518 B
+  ├ chunks/webpack-cb7634a8b6194820.js     884 B
+  └ css/72a664e15691a597.css               5.73 kB
+
+λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
+
+[PM2] Applying action stopProcessId on app [blog](ids: [ 0 ])
+[PM2] [blog](0) ✓
+┌─────┬─────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id  │ name    │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├─────┼─────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0   │ blog    │ default     │ 0.39.1  │ fork    │ 0        │ 0      │ 0    │ stopped   │ 0%       │ 0b       │ ubuntu   │ disabled │
+└─────┴─────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+[PM2] Applying action deleteProcessId on app [blog](ids: [ 0 ])
+[PM2] [blog](0) ✓
+┌─────┬───────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id  │ name      │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+└─────┴───────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+
+> pm2start
+> pm2 start npm --name blog -- run start
+
+[PM2] Starting /home/ubuntu/.nvm/versions/node/v16.17.1/bin/npm in fork_mode (1 instance)
+[PM2] Done.
+┌─────┬─────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id  │ name    │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├─────┼─────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0   │ blog    │ default     │ 0.39.1  │ fork    │ 1921132  │ 0s     │ 0    │ online    │ 0%       │ 18.4mb   │ ubuntu   │ disabled │
+└─────┴─────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+
+> build
+> next build
+
+info  - Linting and checking validity of types...
+info  - Creating an optimized production build...
+info  - Compiled successfully
+info  - Collecting page data...
+info  - Generating static pages (0/10)
+info  - Generating static pages (2/10)
+info  - Generating static pages (4/10)
+info  - Generating static pages (7/10)
+info  - Generating static pages (10/10)
+info  - Finalizing page optimization...
+
+Route (pages)                              Size     First Load JS
+┌ ● / (839 ms)                             3.18 kB        89.2 kB
+├   /_app                                  0 B            74.4 kB
+├ ○ /404                                   290 B          74.7 kB
+├ λ /line                                  83.7 kB         158 kB
+├   └ css/46c82fdd39adf125.css             282 B
+└ ● /posts/[id] (4331 ms)                  1.76 kB        87.8 kB
+    ├ /posts/AMM演变 (1060 ms)
+    ├ /posts/DevDao (844 ms)
+    ├ /posts/BuySocialAccount (799 ms)
+    ├ /posts/NearNamedAccount (744 ms)
+    ├ /posts/CaptureTheEther讲解 (519 ms)
+    ├ /posts/DistributionSystem
+    └ /posts/NFTBYAR
++ First Load JS shared by all              80.1 kB
+  ├ chunks/framework-5f4595e5518b5600.js   42 kB
+  ├ chunks/main-d719a31ca00eb19c.js        31 kB
+  ├ chunks/pages/_app-979cf171145d7c08.js  518 B
+  ├ chunks/webpack-cb7634a8b6194820.js     884 B
+  └ css/72a664e15691a597.css               5.73 kB
+
+λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
+
+[PM2] Applying action stopProcessId on app [blog](ids: [ 0 ])
+[PM2] [blog](0) ✓
+┌─────┬─────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id  │ name    │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├─────┼─────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0   │ blog    │ default     │ 0.39.1  │ fork    │ 0        │ 0      │ 0    │ stopped   │ 0%       │ 0b       │ ubuntu   │ disabled │
+└─────┴─────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+[PM2] Applying action deleteProcessId on app [blog](ids: [ 0 ])
+[PM2] [blog](0) ✓
+┌─────┬───────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id  │ name      │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+└─────┴───────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+
+> pm2start
+> pm2 start npm --name blog -- run start
+
+[PM2] Starting /home/ubuntu/.nvm/versions/node/v16.17.1/bin/npm in fork_mode (1 instance)
+[PM2] Done.
+┌─────┬─────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id  │ name    │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├─────┼─────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0   │ blog    │ default     │ 0.39.1  │ fork    │ 1927407  │ 0s     │ 0    │ online    │ 0%       │ 20.2mb   │ ubuntu   │ disabled │
+└─────┴─────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
