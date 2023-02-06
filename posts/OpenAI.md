@@ -25,13 +25,13 @@ ChatGPT太卡顿? 经常出问题?
 
 ![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20230206201555.png)
 
-**如果你运气比较好, 那么这个号码没有注册过, 你会获得为期三个月18美金的体验金,** 如果运气不太好 号码被用掉了. 那就只能花钱买**Token(openai的计价单位, 多数情况下一个简单的英文单词耗费1Token, 复杂较长的单词可能多个Token, 所以大概数值是750个单词消耗1000token)** . 对于英文单词/中文字体的Token计价可以查看 [Here](https://platform.openai.com/tokenizer)
+**如果你运气比较好, 那么这个号码没有注册过, 你会获得为期三个月18美金的体验金,** 如果运气不太好 号码被用掉了. 那就只能花钱买**Token(openai的计价单位, 多数情况下一个简单的英文单词耗费1Token, 复杂较长的单词可能多个Token, 所以大概数值是750个单词消耗1000token 相应的 一个中文字对应2Token,)** . 对于英文单词/中文字体的Token计价可以查看 [Here](https://platform.openai.com/tokenizer)
 
 :strawberry: 购买Token挺操蛋的一点是 国内外币visa信用卡貌似不能绑定, 我试了试俺自己的卡, **报错显示不能服务国内**, 这个还没找到好的办法
 
 > 如果你有国外的credit card, 可以试试, 成功之后, 方便的话可以反馈一下, 联系[twitter](https://twitter.com/skyonedot)即可
 
-这里简单说下价格, 参考这里 [Here](https://openai.com/api/pricing/). 以**最贵最好的模型来说**, 1美金对应50000token. 对应生成37500个英文单词, [我这里看了下, 一个中文字对应2Token, 即1美金可以生成25000个中文汉字, 这个分量还是很足的 :apple:]
+这里简单说下价格, 参考这里 [Here](https://openai.com/api/pricing/). 以**最贵最好的模型来说**, 1美金对应50000token. 对应生成37500个英文单词, [我这里看了下,  即1美金可以生成25000个中文汉字, 这个分量还是很足的 :apple:]
 
 ![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20230206202251.png)
 
@@ -99,3 +99,4 @@ ChatGPT太卡顿? 经常出问题?
 
 1. https://www.twilio.com/blog/ultimate-guide-openai-gpt-3-language-model
 2. https://towardsdatascience.com/gpt-3-parameters-and-prompt-design-1a595dc5b405
+3. https://buildspace.so/builds/ai-writer 这个课程 强推一波
