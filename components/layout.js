@@ -25,10 +25,10 @@ export default function Layout({ children, home }) {
           <>
             <Image
               priority
-              src="/images/profile.jpg"
+              src="/images/profile.jpeg"
               className={utilStyles.borderCircle}
               height={122}
-              width={122}
+              width={82}
               alt="SkyOne Profile JPG"
             />
           </>
@@ -36,10 +36,10 @@ export default function Layout({ children, home }) {
           <>
             <Image
               priority
-              src="/images/profile.jpg"
+              src="/images/profile.jpeg"
               className={utilStyles.borderCircle}
               height={108}
-              width={108}
+              width={73}
               alt="SkyOne Profile JPG"
             />
           </>
