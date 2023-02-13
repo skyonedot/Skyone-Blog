@@ -115,8 +115,9 @@
 }
 
 .articlepage {
-  /* display: grid;
-  grid-template-columns: auto auto; */
+  /* max-width: 80%; */
+
+
 }
 
 .articlepage h1 {
