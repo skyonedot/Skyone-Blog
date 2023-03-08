@@ -1,5 +1,5 @@
 ---
-title: '关于Curve 你所需要知道的一切'
+title: 'Curve九问'
 date: '2023-03-03'
 
 ---
