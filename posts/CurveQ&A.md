@@ -1,5 +1,5 @@
 ---
-title: 'Curve九问'
+title: 'Curve十问'
 date: '2023-03-03'
 
 ---
@@ -41,7 +41,7 @@ date: '2023-03-03'
       - 对应50%的交易手续费
       - Stake这一步 是把你的LPToken 放到了池子里, 即把你的LPToken放到了池子中
    -  这里要重点解释一些Deposit和Stake :red_circle: 
-      -  Deposit指的是, 把你的真金白银放到了Curve, 返回给你一个存款凭证(LPToken), 这时候你可以享受到Swap的奖励(即Curve标注的Base奖励)
+      -  Deposit指的是, 把你的真金白银放到了Curve, 返回给你一个存款凭证(LPToken), 这时候你可以享受到Swap的奖励(即Curve标注的Base奖励, 这部分利息奖励的Token, 是你Deposit进去的N种代币)
       -  Stake值得是, 你把你的凭证(LPToken), 又放到了某个池子里, 这时候你享受的是Curve给你的CRV奖励(对应上面Boost的那部分奖励)
          -  当然, 这一步的Stake 可以不必选择Curve, 一些衍生平台, 比如Convex也可以的
    -  反过来看 Withdraw和unStake, 一样的道理, 不再多说
@@ -69,7 +69,6 @@ date: '2023-03-03'
    - 关于Stake和unStake手续费
      - Stake/unStake 没有手续费
 7. Pool会分类吗? 会分成Basepool和高级Pool吗?
-
    - 如果有足够多的veCRV, 那么可以设定Metapool, 甚至设定Basepool, 而basepool是curve上面很重要的一环, 作为curve上的基础流动性, 不但其余的项目方非常认可, 而且享受着各个项目在Curve上的补贴
 
    - 什么是basepool和metapool?
@@ -91,6 +90,12 @@ date: '2023-03-03'
        - Curve War的发生, 主要是围绕**贿赂**开展
        - 比如项目A想要自己的代币池子有更高的CRV排放, 那么A就可以拿出自己的代币, 来奖励那些投票给自己池子增加CRV排放的地址
    - 直接的贿选平台 [Bribe.crv](https://bribe.crv.finance/) :link:   [votium.app](https://votium.app/) :link:
+
+ 10. 为什么要Stake LPToken呢?
+      > 这里这个问题困扰我许久, 因为Deposit这一步, 已经为池子提供了深度, 会获得LPToken(凭证), 那再Stake LP的意义是什么? 这一步不会再为池子提供深度了啊, 但是对于用户来说可以拿到可观的CRV奖励
+      
+      - 一种保证, 保证不会立即取款 :apple: Fine, 
+      - 再进一步解释即, 谁掌握了LPToken, 谁就掌握了存进去的流动性, 这样一看, Stake LP的必要性是不是大大增加.
 
 ---
 
