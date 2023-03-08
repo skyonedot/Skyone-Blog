@@ -96,6 +96,7 @@ date: '2023-03-03'
       
       - 一种保证, 保证不会立即取款 :apple: Fine, 
       - 再进一步解释即, 谁掌握了LPToken, 谁就掌握了存进去的流动性, 这样一看, Stake LP的必要性是不是大大增加.
+      - [Gauge系统](https://resources.curve.fi/reward-gauges/understanding-gauges#the-gauge-system):link: 再深一步, 理解Gauge系统, 由于通胀会流向提供LP的人, 因此你把LP Stake进去, 那么整个系统就知道你为池子提供了多少的流动性, 那么奖励你承担通胀的同时, 会给你CRV奖励.
 
 ---
 
