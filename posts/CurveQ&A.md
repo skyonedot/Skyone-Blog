@@ -35,7 +35,7 @@ date: '2023-03-03'
            - 注意这里, 比如我有3000veCRV, 那么我的所有LP是自动获得Boost的, 比如A,B两池子, A池子需要3000veCRV才能达到2.5x, 而B池子3000veCRV只能1.5x, 那么当我持有3000veCRV的时候, 我A池子会获得2.5x, B池子会获得1.5x
 3. Deposit和Stake是什么意思, 代表什么意思? 
    -  Deposit对应Base奖励
-      - Deposit这一步, 是把你的Token变成LPToken, 即钱包里少了相应的Token, 但是多了LPToken
+      - Deposit这一步, 是把你的Token, 通过Add Liquidity的方式变成LPToken, 即钱包里少了相应的Token, 但是多了LPToken
         - 拿到LPToken之后, 还能去别的平台Stake, 不一定局限在Curve中
    -  Stake对应CRV奖励
       - 对应50%的交易手续费
@@ -54,7 +54,7 @@ date: '2023-03-03'
    - CRV释放 以及 veCRV的数量查看, [戳我](https://dao.curve.fi/releaseschedule) :link:
    - 当前时刻以及下一周的池子占比查看面板, [戳我](https://dao.curve.fi/gaugeweight)  :link:
    - 注意一点, 每条链上不一定会有CRV的排放, 比如OP上就没有CRV排放
-5. Curve的Revenu和Fee? 
+5. Curve的Revenue和Fee? 
    - 这里区分一下Fee和Revenue
    - Fee指的是手续费, 比如Curve 3pool的池子的手续费是0.01%, 即你想Swap 1MUSDT变成DAI的话, 在3pool池子, 需要交100U的手续费, 其中50U返回给LP, 剩余的50U给veCRV的持有人
    - Revenue则是指的是收入, 由于veCRV的持有可以分到大量的手续费, 所以整个CurveDAO是有着很好的经济收入的
@@ -97,6 +97,7 @@ date: '2023-03-03'
       - 一种保证, 保证不会立即取款 :apple: Fine, 
       - 再进一步解释即, 谁掌握了LPToken, 谁就掌握了存进去的流动性, 这样一看, Stake LP的必要性是不是大大增加.
       - [Gauge系统](https://resources.curve.fi/reward-gauges/understanding-gauges#the-gauge-system):link: 再深一步, 理解Gauge系统, 由于通胀会流向提供LP的人, 因此你把LP Stake进去, 那么整个系统就知道你为池子提供了多少的流动性, 那么奖励你承担通胀的同时, 会给你CRV奖励.
+      - 其实大多数Defi都是Add Liquidity不一定有很多奖励, 但是你再把LP Stake进去, 奖励就很丰富了
 
 ---
 
