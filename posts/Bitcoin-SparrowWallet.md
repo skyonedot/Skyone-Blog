@@ -75,11 +75,15 @@ date: '2023-05-10'
 
 ### 实践
 
-1. 以Sparrow Wallet来说, 启动testnet >>>> Tools-->Restart Testnet
+1. 以[Sparrow Wallet](https://sparrowwallet.com/)来说, 启动testnet >>>> Tools-->Restart Testnet
+
+   ![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20230511131341.png)
 
    > 可以在测试网多玩一玩 :funeral_urn: 
 
-2. Connect, 连接区块的时候, 可能不会很顺利, Clash开Direct会好一些
+2. Connect, 连接区块的时候, 可能不会很顺利, Clash开Direct会好一些, 如下图
+
+   ![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20230511131320.png)
 
 3. 领水合集
 
@@ -87,7 +91,32 @@ date: '2023-05-10'
    2. https://bitcoinfaucet.uo1.net/send.php
    3. https://testnet-faucet.mempool.co/
 
-4. BRF实践
+4. 面板介绍
+
+   - ![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20230511131701.png)
+
+   - ![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20230511131803.png)
+
+   - ![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20230511132019.png)
+
+   - ![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20230511132106.png)
+
+   - ![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20230511132305.png)
+
+     - 介绍下左边的这几个面板
+     - Transactions 指的是你作为接收方 或者 发送方的tx
+     - Send, 是给某个地址发送BTC, 
+       - payto字段是发送给谁
+       - label是标识字符, 类似于注释
+       - amount 是发送多少
+       - Fee这里, 可以自己拖动来调节gas, 最后的 Fee = tx大小*gas 
+     - Receive 这里, 即你可以选择用某个地址 接受外部转账
+     - Address这里注意, 这里面的Address 都是你可以用的地址, 由于一套助记词生成N多地址, 所以这些地址都归属于你了, 他们名下的UTXO 你也都可以用, 如果想用某个UTXO, 直接选择该UTXO, 然后“Send Selected”即可 如下图![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20230511133200.png) 
+
+     - UTXOs 这一栏, 即你可以花的UTXO, 与上面同理, 想花哪个选中, 选择小飞机图标即可, 如下图![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20230511133326.png)
+     - Setting这一栏, 就不过多叙述了 :walking: 
+
+5. BRF实践
 
    1. [txB](https://mempool.space/testnet/tx/88a1cbf571e041ea5abc73ad9c6444305f5056a3193bc2b09a021b4c3bb6fb5f) 替代 [txA](https://mempool.space/testnet/tx/b670e8df517b298716d8e6cdf512743d33013d2f0b08aac64f8250a7a258cd5b), 针对的是 “我嫌弃gas太低, 想快点成交” 这种情况, 大概原理如下
       - 我首先发起txA, 用 tb1qn2zt7xzc4nwe4m5rzg8jt4gr446h069vjunapj 地址中的一个面值为 1282sats的utxo(简称U1), 给tb1q66spu0n20ru23yhc6katlwu4j9xl4sn9yxrnwh 这个地址转账1131sats, gas花 151stas. (151 + 1131 = 1282)
@@ -99,16 +128,23 @@ date: '2023-05-10'
       - 后发起txB, 同样用U1, 给 tb1q4eqr370h7w37quke9nes5yc9ncnpctfpejv8df转账 294sats, gas为748
       - 最后txB成交, txA没有成交
 
-5. CPFP实践
+6. CPFP实践
 
    1. [父交易](https://mempool.space/testnet/tx/8a7085d884f4f054cdae4457b3aeb52742329906db2ad446be1605db3d45764a) 和 [子交易](https://mempool.space/testnet/tx/03dbfd05e31c3d3fe02a47ef269856dff483f272233ff5d4dc1e1cbd9cda1ff5), 大概经过如下
       - 我首先发起父交易, 即tb1qn2zt7xzc4nwe4m5rzg8jt4gr446h069vjunapj (简称地址A) 一张面额为12281sats的UTXO(U1)作为input, 向tb1q4eqr370h7w37quke9nes5yc9ncnpctfpejv8df (简称地址B) 转账1000sats, 其余的11140sats退回到 tb1qzk35rutqjcuj7la95hvvcdqkczjv7dqwtyh6ls (简称地址C)
       - 然后我用地址C收到的11140sats, 发起向 tb1q80262jz5ytdfhj38ur4l7duect6qppc4j6unj7 (简称地址D)转账1000sats的子交易.
       - 由于子交易的提速, 所以父交易的有效费率 由1.01-->1.43, 而子交易的有效费率 由1.85-->1.43
 
+7. 再强调一点, 玩BRC20的话, 不要RBF, 用CPFP(至于为什么 我了解不多, 不多说)
+
+8. Sparrow中, 想发起加速的时候, Fee 和 amount 为什么标红?
+
+   1. 如果有一个utxo, 并不是自己发起的, 只是别人给我的, 并且这个UTXO的value 只有546, 那就是太小了,
+   2. 换句话说, 这个UTXO的余额 不足以支撑新UTXO的输入 以及 提升gas的费用(即不足以支付children)
+
 ---
 
-### 碎碎念(下面不必细看, 只是自己Record)
+<!-- ### 碎碎念(下面不必细看, 只是自己Record)
 
 1. Bank
    - 以Mint Bank的 这笔tx举例 https://mempool.space/tx/235f48c900da514567d1e2a9a7e11e4611f5f4c0741ee9bd8903f57f28c28afe, 
@@ -126,9 +162,6 @@ date: '2023-05-10'
    1. 如果有一个utxo, 并不是自己发起的, 只是别人给我的, 并且这个UTXO的value 只有546, 那就是太小了,
    2. 换句话说, 这个UTXO的余额 不足以支撑新UTXO的输入 以及 提升gas的费用(即不足以支付children)
 
----
+--- -->
 
 感谢康纳和alex两位大哥的技术指导
-
-
-
