@@ -1,0 +1,87 @@
+---
+title: 'Ve(3,3)到底是什么'
+date: '2023-06-25'
+
+---
+
+![](https://images.pexels.com/photos/15272226/pexels-photo-15272226.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)
+
+> Photo by Gutsbyjan N.
+
+
+
+### OHM(3,3)
+
+- 2021年3月启动，最开始MP37M；2021年11月，MP达4.3b，MP 上涨100倍；
+- OHM想要成为一种新的稳定币，但是是与 USD-Peg 不一样的稳定币，价格由国库支撑, 要做价值存储；
+- OHM引领的 Defi 2.0，之所以说2.0，是因为 Defi1.0 的流动性挖矿一直都遵循鲸鱼组LP挖原始代币，撤出，倾销以至于矿难；
+- OHM首举协议拥有流动性（Protocol-Controlled Liquidity）以达到 PCV（Protocol Controlled Value）的目的。提供了另外一种流动性挖矿策略，通过bonding和staking 来使得协议拥有流动性；传统Defi则是依靠用户提供LP，相当于在租用流动性；
+- 传统Defi依靠用户来提供LP，可以保持市场有效性以及流动的分配，但是很难在市场波动的情况下保护协议的长期价值，并且需要一定的贿赂才能留住用户来提供LP；
+- 通胀制造出来的 OHM 一部分作为给stake的奖励，另一部分则是用于 bond 折扣价出售，最初DAI是Olympus唯一支持的稳定币； 
+- 其中的 bond , 是利用折扣价的OHM来从用户手里购买LP或者稳定币，OHM拥有LP之后，就可以从LP中获得回报，这个回报即我们一般意义上的交易手续费，来进一步扩充国库，并且提高OHM的底价；
+- OHM的价格由国库所持有资产总价值保证；
+- Stake 和 Sale 会导致价格波动，而 Bond 不会。因为Stake和Sale会改变市场上 OHM 的供应量，抵押会将 OHM 从市场上拿走并放入协议中，从而减少市场上的供应量，这可能会导致价格上涨；销售则会增加市场上的供应量，这可能会导致价格下降。相比之下，绑定不会直接影响市场上 OHM 的供应量，定是指将代币（例如 DAI 或 Uniswap LP 代币）兑换为低于市场价格的 OHM 代币的过程，这些代币被锁定一段时间（最短一周）。这些抵扣价的OHM来自于国库的发行。因此，绑定不会直接改变市场上 OHM 的供应量（短期内），因此不会导致价格波动；
+- （3，3）是什么？
+  - 目前OHM中有三种模式，Stake、Bond、Sale；
+  - 如果大家都来Stake，那么价格螺旋上升，那就是（3，3），因此可以看作是一种呼吁Stake的Meme称呼
+  - Staking（3，3）作为实现价值存储状态的主要资源，要staking的方式很简单，要么直接从市场上购买，要么bond DAI/LP 以换取折扣的OHM（有锁定期），staking的奖励主要来自于国库从bond sale中获得。OHM 的超高抵押奖励是由市场 OHM（约 $1,190）和每个 OHM 的支持（约 $191）之间的价格差异所实现的 (因为OHM价格太高, 而backed价格没那么高 所以通过极高的年化来膨胀, 以稀释OHM价格) :apple: 通胀哪里来的？ 用户bond 买一个 国库会发行很多吗？
+  - Bond是OHM的次要策略，称为（1，1） 用于累计价值，Bond指的是用户可以用手中的Tokne（DAI, LP, FRAX）等来换取折扣性的OHM（国库发行），需要锁仓；bond 的机制，使得OHM的流动性暂时得以锁定；
+- OHM为什么拥有这么高的apy？
+  - 8h复利一次（复利APY一旦算上就是会很高）
+  - OHM本身的rebase（变基质押）机制 :apple: 
+- Olympus以售卖Bond发行OHM并赚取利润
+
+---
+
+### Ve(3,3)
+
+- Ve(3,3)的由来是什么？
+  - Ve来自于Curve的代币模型，关于Curve请移步这篇文章 [Here](https://www.skyxuan.one/posts/CurveQ&A)
+  - (3,3)则是来自于我们上面所讲述的OHM(3,3)
+
+- Ve(3,3)到底是什么？
+  - 最初来自于 [solidlyswap](https://solidly.exchange/home)  由AC在FTM发起
+  - Solidly最初发起时AC便表明部分治理代币会分发给FTM上面TVL排名前20的协议，因此引发FTM上面的锁厂大战
+- 先说Ve
+  - 与Curve不同的点在于，在Curve里只要你有VeToken，那么你就能拿到手续费分红，不管你投票给谁，都会有分红。但是Solidly里面，如果你给某个池子投票，那么你就只能参与A池子的手续费。
+  - Curve中组LP是可以收取一定的手续费，但是Solidly则没有，交易手续费全部给到VeToken的持有者。只能获得增发代币的激励，并且每个池子分到的增发代币的数量也由VeToken的持有者决定。
+  - Curve中，VeToken是不能出售的，只能锁在用户的钱包里。而Solidly的VeToken可以变成NFT，持有者可以对NFT进行交易
+- 再说（3，3）
+  - 参考上面，Staking是重中之重，因此如何锁住大量的Token则是一个难点
+  - 一般来说，如果你锁Token，而池子每天都会排放一定量的Token给到LP，那么一定程度上你的Token是会被稀释掉的。这里Ve（3，3）的做法则是根据VeToken的锁厂比例来调节每天奖励给LP的部分，。
+- ve(3,3) 不会以原生 Token 或稳定币的形式分配费用，而是分配能将费用价值持续传递下去的费用资产
+- Ve（3,3）是一个采用AMM（自动做市商）机制的应用，能够帮助DeFi应用发行和管理Token资产
+- Ve（3,3）希望能通过稳定币协议Curve的「Ve-Token」即VeCRV的锁仓机制，加上算法稳定币Olympus （OHM）社区的「3,3」理念，解决DeFi应用Token分发、管理问题。需要注意的是，Ve（3,3）不是「去中心化交易所」，它在AMM机制上进行了应用的再构建，试图以更细化的方式分配应用Token。
+
+
+
+
+
+
+
+
+
+https://www.theblockbeats.info/news/28080?search=1 
+
+https://twitter.com/mindaoyang/status/1453314315444834307?s=20
+
+https://academy.shrimpy.io/post/what-is-olympus-dao-ohm-explaining-the-3-3-meme-bonding-and-stablecoins 
+
+https://phemex.com/academy/what-is-olympus-dao-ohm-coin
+
+https://medium.com/@edwardyw/ohm%E7%9A%84%E5%A4%9A%E9%87%8D%E5%88%9B%E6%96%B0-a3b609fb31c5
+
+https://www.wwsww.cn/xinbi/10300.html
+
+https://mirror.xyz/jojonas1.eth/NCsvdY9UcgLHp8VDJWdyH5KcX2Q4mZNo_1mrtlW1rAs 
+
+https://mirror.xyz/nomadlab.eth/Xv7vhb-bLtdGA82hxEjdHdx4nw4zzyqt44egIgG4ZfM 
+
+https://www.theblockbeats.info/news/28671
+
+
+
+---
+
+
+
