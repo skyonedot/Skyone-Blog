@@ -85,13 +85,27 @@ date: '2023-05-10'
 
    ![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20230511131320.png)
 
-3. 领水合集
+   可以在clash配置文件的rules中添加以下内容 即可实现sparrow的这几个网络是直连, 其余的正常rule
+   rules:
+  - DOMAIN-SUFFIX,smtp,DIRECT
+  - DOMAIN-KEYWORD,aria2,DIRECT
+  - IP-CIDR,203.132.94.196/32,DIRECT,no-resolve
+  - IP-CIDR,35.201.74.156/32,DIRECT,no-resolve
+  - IP-CIDR,35.225.54.191/32,DIRECT,no-resolve
+  - IP-CIDR,198.244.201.86/32,DIRECT,no-resolve
+  - IP-CIDR,135.181.215.237/32,DIRECT,no-resolve
+  - IP-CIDR,168.119.33.233/32,DIRECT,no-resolve
+  - IP-CIDR,168.119.33.233/32,DIRECT,no-resolve
+  # - DOMAIN-KEYWORD,electrum.diynodes,DIRECT
+  - IP-CIDR,170.75.162.55/32,DIRECT,no-resolve
+
+4. 领水合集
 
    1. https://testnet-faucet.com/btc-testnet/ 
    2. https://bitcoinfaucet.uo1.net/send.php
    3. https://testnet-faucet.mempool.co/
 
-4. 面板介绍
+5. 面板介绍
 
    - ![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20230511131701.png)
 
@@ -116,7 +130,7 @@ date: '2023-05-10'
      - UTXOs 这一栏, 即你可以花的UTXO, 与上面同理, 想花哪个选中, 选择小飞机图标即可, 如下图![](https://raw.githubusercontent.com/skyonedot/picture-host/master/20230511133326.png)
      - Setting这一栏, 就不过多叙述了 :walking: 
 
-5. BRF实践
+6. BRF实践
 
    1. [txB](https://mempool.space/testnet/tx/88a1cbf571e041ea5abc73ad9c6444305f5056a3193bc2b09a021b4c3bb6fb5f) 替代 [txA](https://mempool.space/testnet/tx/b670e8df517b298716d8e6cdf512743d33013d2f0b08aac64f8250a7a258cd5b), 针对的是 “我嫌弃gas太低, 想快点成交” 这种情况, 大概原理如下
       - 我首先发起txA, 用 tb1qn2zt7xzc4nwe4m5rzg8jt4gr446h069vjunapj 地址中的一个面值为 1282sats的utxo(简称U1), 给tb1q66spu0n20ru23yhc6katlwu4j9xl4sn9yxrnwh 这个地址转账1131sats, gas花 151stas. (151 + 1131 = 1282)
@@ -128,16 +142,16 @@ date: '2023-05-10'
       - 后发起txB, 同样用U1, 给 tb1q4eqr370h7w37quke9nes5yc9ncnpctfpejv8df转账 294sats, gas为748
       - 最后txB成交, txA没有成交
 
-6. CPFP实践
+7. CPFP实践
 
    1. [父交易](https://mempool.space/testnet/tx/8a7085d884f4f054cdae4457b3aeb52742329906db2ad446be1605db3d45764a) 和 [子交易](https://mempool.space/testnet/tx/03dbfd05e31c3d3fe02a47ef269856dff483f272233ff5d4dc1e1cbd9cda1ff5), 大概经过如下
       - 我首先发起父交易, 即tb1qn2zt7xzc4nwe4m5rzg8jt4gr446h069vjunapj (简称地址A) 一张面额为12281sats的UTXO(U1)作为input, 向tb1q4eqr370h7w37quke9nes5yc9ncnpctfpejv8df (简称地址B) 转账1000sats, 其余的11140sats退回到 tb1qzk35rutqjcuj7la95hvvcdqkczjv7dqwtyh6ls (简称地址C)
       - 然后我用地址C收到的11140sats, 发起向 tb1q80262jz5ytdfhj38ur4l7duect6qppc4j6unj7 (简称地址D)转账1000sats的子交易.
       - 由于子交易的提速, 所以父交易的有效费率 由1.01-->1.43, 而子交易的有效费率 由1.85-->1.43
 
-7. 再强调一点, 玩BRC20的话, 不要RBF, 用CPFP(至于为什么 我了解不多, 不多说)
+8. 再强调一点, 玩BRC20的话, 不要RBF, 用CPFP(至于为什么 我了解不多, 不多说)
 
-8. Sparrow中, 想发起加速的时候, Fee 和 amount 为什么标红?
+9. Sparrow中, 想发起加速的时候, Fee 和 amount 为什么标红?
 
    1. 如果有一个utxo, 并不是自己发起的, 只是别人给我的, 并且这个UTXO的value 只有546, 那就是太小了,
    2. 换句话说, 这个UTXO的余额 不足以支撑新UTXO的输入 以及 提升gas的费用(即不足以支付children)
